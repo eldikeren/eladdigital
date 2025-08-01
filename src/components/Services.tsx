@@ -5,31 +5,37 @@ const services = [
     id: 1,
     title: "בניית אתרים",
     description: "פיתוח אתרים מותאמים אישית עם חוויית משתמש מדויקת וביצועים אופטימליים.",
+    icon: "🌐"
   },
   {
     id: 2,
     title: "קידום אתרים (SEO)",
     description: "אופטימיזציה מתקדמת לשיפור מיקומים והגדלת תנועת גולשים אורגנית.",
+    icon: "📈"
   },
   {
     id: 3,
     title: "ניהול קמפיינים",
     description: "פרסום ממוקד ומבוסס דאטה בגוגל, פייסבוק ורשתות נוספות.",
+    icon: "🎯"
   },
   {
     id: 4,
     title: "עיצוב UX/UI",
     description: "עיצובים מודרניים וחדשניים שמייצרים חוויות משתמש ייחודיות.",
+    icon: "🎨"
   },
   {
     id: 5,
     title: "אנליטיקה ודאטה",
     description: "דוחות מתקדמים ומעקב ביצועים לצורך אופטימיזציה שוטפת.",
+    icon: "📊"
   },
   {
     id: 6,
     title: "אסטרטגיה דיגיטלית",
     description: "בניית תוכנית פעולה מלאה שמביאה תוצאות אמיתיות.",
+    icon: "🚀"
   },
 ];
 
@@ -139,33 +145,34 @@ const Services: React.FC = () => {
                 e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.3)';
               }}
             >
-              {/* אייקון מונפש */}
+              {/* אייקון מקצועי */}
               <div style={{
                 display: 'flex',
                 justifyContent: 'center',
-                marginBottom: '1rem'
+                marginBottom: '1.5rem'
               }}>
                 <div style={{
-                  width: '4rem',
-                  height: '4rem',
+                  width: '5rem',
+                  height: '5rem',
                   background: 'linear-gradient(135deg, #a855f7, #8b5cf6)',
-                  borderRadius: '12px',
+                  borderRadius: '16px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: 'white',
+                  fontSize: '2.5rem',
                   animation: `pulse 3s ease-in-out infinite ${index * 0.2}s`,
                   position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  boxShadow: '0 8px 32px rgba(168, 85, 247, 0.3)'
                 }}>
-                  {/* אייקון פנימי */}
-                  <div style={{
-                    width: '2rem',
-                    height: '2rem',
-                    background: 'white',
-                    borderRadius: '50%',
-                    animation: `rotate 4s linear infinite ${index * 0.3}s`
-                  }} />
+                  {/* אייקון מקצועי */}
+                  <span style={{
+                    animation: `float 4s ease-in-out infinite ${index * 0.3}s`,
+                    filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
+                  }}>
+                    {service.icon}
+                  </span>
                   {/* Glow effect */}
                   <div style={{
                     position: 'absolute',
@@ -173,7 +180,7 @@ const Services: React.FC = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)',
                     animation: `glow 2s ease-in-out infinite ${index * 0.4}s`
                   }} />
                 </div>
@@ -226,6 +233,15 @@ const Services: React.FC = () => {
         @keyframes rotate {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes float {
+          0%, 100% { 
+            transform: translateY(0px); 
+          }
+          50% { 
+            transform: translateY(-8px); 
+          }
         }
         
         @keyframes glow {
