@@ -141,7 +141,8 @@ const Navigation: React.FC = () => {
               display: 'flex',
               flexDirection: 'column',
               gap: '4px',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              zIndex: 1001
             }}
           >
             <div style={{
@@ -182,8 +183,8 @@ const Navigation: React.FC = () => {
           transform: isMenuOpen ? 'translateY(0)' : 'translateY(-100%)',
           opacity: isMenuOpen ? '1' : '0',
           visibility: isMenuOpen ? 'visible' : 'hidden',
-          transition: 'all 0.3s ease',
-          animation: isMenuOpen ? 'slideDown 0.3s ease-out' : 'none'
+          transition: 'transform 0.3s ease, opacity 0.3s ease',
+          zIndex: 999
         }}>
           <div style={{
             padding: '1rem',
@@ -206,7 +207,9 @@ const Navigation: React.FC = () => {
                   borderRadius: '8px',
                   transition: 'all 0.3s ease',
                   textAlign: 'center',
-                  animation: `fadeInUp 0.3s ease-out ${index * 0.1}s both`
+                  opacity: isMenuOpen ? '1' : '0',
+                  transform: isMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+                  transitionDelay: isMenuOpen ? `${index * 0.1}s` : '0s'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = 'rgba(168, 85, 247, 0.1)';
@@ -245,11 +248,6 @@ const Navigation: React.FC = () => {
         @keyframes fadeInUp {
           0% { opacity: 0; transform: translateY(20px); }
           100% { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slideDown {
-          0% { transform: translateY(-100%); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
         }
 
         @media (max-width: 768px) {
