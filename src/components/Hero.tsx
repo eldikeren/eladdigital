@@ -193,22 +193,25 @@ const Hero: React.FC = () => {
         maxWidth: '1200px',
         width: '100%',
         animation: 'fadeInUp 1s ease-out',
-        paddingBottom: isMobile ? '4rem' : '8rem'
+        paddingBottom: isMobile ? '6rem' : '8rem', // מרווח לכרטיסי שירותים
+        paddingTop: isMobile ? '4rem' : '0' // מרווח לניווט במובייל
       }}>
         
         <h1 style={{
           fontFamily: 'Orbitron, monospace',
-          fontSize: isMobile ? '2rem' : '3.5rem',
+          fontSize: isMobile ? '1.8rem' : '3.5rem',
           fontWeight: 900,
           color: '#ffffff',
           marginBottom: '1rem',
           textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
           animation: 'textGlow 3s ease-in-out infinite',
-          lineHeight: isMobile ? '1.2' : '1.1'
+          lineHeight: isMobile ? '1.3' : '1.1',
+          wordWrap: 'break-word',
+          overflowWrap: 'break-word'
         }}>
           צוות עילית מקצועי
           <div style={{
-            height: isMobile ? '3rem' : '4.5rem',
+            height: isMobile ? '2.5rem' : '4.5rem',
             position: 'relative',
             overflow: 'hidden',
             marginTop: '0.5rem',
@@ -218,13 +221,15 @@ const Hero: React.FC = () => {
           }}>
             <span style={{
               color: '#a855f7',
-              fontSize: isMobile ? '2rem' : '3.5rem',
+              fontSize: isMobile ? '1.8rem' : '3.5rem',
               fontWeight: 900,
               textShadow: '0 0 30px rgba(168, 85, 247, 0.8)',
               animation: 'slideIn 0.6s ease-out',
               display: 'block',
               width: '100%',
-              textAlign: 'center'
+              textAlign: 'center',
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
             }}>
               {rotatingWords[currentWord]}
             </span>
@@ -233,18 +238,20 @@ const Hero: React.FC = () => {
 
         <p style={{
           fontFamily: 'Rajdhani, sans-serif',
-          fontSize: isMobile ? '1.2rem' : '1.6rem',
+          fontSize: isMobile ? '1rem' : '1.6rem',
           color: '#e2e8f0',
           marginBottom: '1.5rem',
           fontWeight: 600,
-          animation: 'fadeInUp 1s ease-out 0.3s both'
+          animation: 'fadeInUp 1s ease-out 0.3s both',
+          wordWrap: 'break-word',
+          overflowWrap: 'break-word'
         }}>
           פתרונות דיגיטליים מתקדמים
         </p>
 
         <p style={{
           fontFamily: 'Rajdhani, sans-serif',
-          fontSize: isMobile ? '0.9rem' : '1.1rem',
+          fontSize: isMobile ? '0.85rem' : '1.1rem',
           color: '#cbd5e1',
           marginBottom: '3rem',
           lineHeight: 1.7,
@@ -252,7 +259,9 @@ const Hero: React.FC = () => {
           marginLeft: 'auto',
           marginRight: 'auto',
           animation: 'fadeInUp 1s ease-out 0.6s both',
-          padding: isMobile ? '0 1rem' : '0'
+          padding: isMobile ? '0 0.5rem' : '0',
+          wordWrap: 'break-word',
+          overflowWrap: 'break-word'
         }}>
           עם רקע אמנותי בכתיבה ומוזיקה, ניסיון של מעל 25 שנה בחדשנות ויזמות,
           וניהול קמפיינים דיגיטליים בהיקפים של מיליונים – אנחנו הופכים רעיונות לדיגיטל שמייצר הצלחה.
@@ -269,7 +278,8 @@ const Hero: React.FC = () => {
           width: '100%',
           maxWidth: isMobile ? '100%' : '500px',
           margin: '0 auto',
-          padding: isMobile ? '0 1rem' : '0'
+          padding: isMobile ? '0 0.5rem' : '0',
+          marginBottom: isMobile ? '2rem' : '0' // מרווח נוסף במובייל
         }}>
           <a
             href="#contact"
@@ -277,9 +287,9 @@ const Hero: React.FC = () => {
               background: 'linear-gradient(135deg, #a855f7, #8b5cf6)',
               border: 'none',
               borderRadius: '50px',
-              padding: isMobile ? '0.8rem 2rem' : '1rem 2.5rem',
+              padding: isMobile ? '0.7rem 1.5rem' : '1rem 2.5rem',
               fontFamily: 'Rajdhani, sans-serif',
-              fontSize: isMobile ? '0.9rem' : '1.1rem',
+              fontSize: isMobile ? '0.8rem' : '1.1rem',
               fontWeight: 600,
               color: 'white',
               cursor: 'pointer',
@@ -294,7 +304,9 @@ const Hero: React.FC = () => {
               position: 'relative',
               overflow: 'hidden',
               width: '100%',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)';
@@ -321,9 +333,9 @@ const Hero: React.FC = () => {
             style={{
               border: '2px solid #e2e8f0',
               borderRadius: '50px',
-              padding: isMobile ? '0.8rem 2rem' : '1rem 2.5rem',
+              padding: isMobile ? '0.7rem 1.5rem' : '1rem 2.5rem',
               fontFamily: 'Rajdhani, sans-serif',
-              fontSize: isMobile ? '0.9rem' : '1.1rem',
+              fontSize: isMobile ? '0.8rem' : '1.1rem',
               fontWeight: 600,
               color: '#e2e8f0',
               cursor: 'pointer',
@@ -337,7 +349,9 @@ const Hero: React.FC = () => {
               position: 'relative',
               overflow: 'hidden',
               width: '100%',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#e2e8f0';
@@ -362,12 +376,12 @@ const Hero: React.FC = () => {
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',
-        gap: isMobile ? '1rem' : '2rem',
+        gap: isMobile ? '0.5rem' : '2rem',
         zIndex: 5,
         flexWrap: 'wrap',
         justifyContent: 'center',
         maxWidth: '90vw',
-        padding: isMobile ? '0 1rem' : '0'
+        padding: isMobile ? '0 0.5rem' : '0'
       }}>
         {[
           { title: "UX / UI", description: "עיצוב חוויית משתמש מודרנית" },
@@ -380,12 +394,12 @@ const Hero: React.FC = () => {
               background: 'rgba(255, 255, 255, 0.1)',
               border: '1px solid rgba(255, 255, 255, 0.2)',
               borderRadius: '12px',
-              padding: isMobile ? '0.8rem 1rem' : '1rem 1.5rem',
+              padding: isMobile ? '0.6rem 0.8rem' : '1rem 1.5rem',
               textAlign: 'center',
               backdropFilter: 'blur(10px)',
               transition: 'all 0.3s ease',
               animation: `fadeInUp 0.8s ease-out ${1.2 + index * 0.1}s both`,
-              minWidth: isMobile ? '120px' : '150px',
+              minWidth: isMobile ? '100px' : '150px',
               flex: '1 1 auto'
             }}
             onMouseEnter={(e) => {
@@ -400,24 +414,28 @@ const Hero: React.FC = () => {
             }}
           >
             <div style={{
-              width: isMobile ? '1.5rem' : '2rem',
-              height: isMobile ? '1.5rem' : '2rem',
+              width: isMobile ? '1.2rem' : '2rem',
+              height: isMobile ? '1.2rem' : '2rem',
               background: '#a855f7',
               borderRadius: '50%',
               margin: '0 auto 0.5rem',
               animation: `pulse 2s ease-in-out infinite ${index * 0.3}s`
             }} />
             <h4 style={{ 
-              fontSize: isMobile ? '0.8rem' : '1rem', 
+              fontSize: isMobile ? '0.7rem' : '1rem', 
               fontWeight: 'bold', 
               color: '#ffffff', 
-              marginBottom: '0.25rem' 
+              marginBottom: '0.25rem',
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
             }}>
               {service.title}
             </h4>
             <p style={{ 
-              fontSize: isMobile ? '0.7rem' : '0.8rem', 
-              color: '#cbd5e1' 
+              fontSize: isMobile ? '0.6rem' : '0.8rem', 
+              color: '#cbd5e1',
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
             }}>
               {service.description}
             </p>
@@ -458,26 +476,50 @@ const Hero: React.FC = () => {
 
         @media (max-width: 768px) {
           .hero-title {
-            font-size: 2rem !important;
-            line-height: 1.2 !important;
+            font-size: 1.8rem !important;
+            line-height: 1.3 !important;
           }
           
           .hero-subtitle {
-            font-size: 1.2rem !important;
+            font-size: 1rem !important;
           }
           
           .hero-description {
-            font-size: 0.9rem !important;
-            padding: 0 1rem !important;
+            font-size: 0.85rem !important;
+            padding: 0 0.5rem !important;
           }
           
           .hero-buttons {
-            padding: 0 1rem !important;
+            padding: 0 0.5rem !important;
+            margin-bottom: 2rem !important;
           }
           
           .hero-button {
-            font-size: 0.9rem !important;
-            padding: 0.8rem 2rem !important;
+            font-size: 0.8rem !important;
+            padding: 0.7rem 1.5rem !important;
+          }
+          
+          .service-cards {
+            gap: 0.5rem !important;
+            padding: 0 0.5rem !important;
+          }
+          
+          .service-card {
+            padding: 0.6rem 0.8rem !important;
+            min-width: 100px !important;
+          }
+          
+          .service-icon {
+            width: 1.2rem !important;
+            height: 1.2rem !important;
+          }
+          
+          .service-title {
+            font-size: 0.7rem !important;
+          }
+          
+          .service-description {
+            font-size: 0.6rem !important;
           }
         }
       `}</style>
