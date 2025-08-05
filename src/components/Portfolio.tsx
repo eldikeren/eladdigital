@@ -69,6 +69,17 @@ const projects = [
 
 const Portfolio: React.FC = () => {
   const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -97,12 +108,11 @@ const Portfolio: React.FC = () => {
   return (
     <section id="portfolio" style={{
       position: 'relative',
-      padding: '5rem 0',
+      padding: isMobile ? '3rem 0' : '5rem 0',
       background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0f0f23 100%)',
       color: 'white',
       overflow: 'hidden'
     }}>
-      
       {/* רקע מונפש */}
       <div style={{
         position: 'absolute',
@@ -110,7 +120,7 @@ const Portfolio: React.FC = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)',
+        background: 'radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
         zIndex: 1,
         animation: 'gradientShift 15s ease-in-out infinite'
       }} />
@@ -118,34 +128,44 @@ const Portfolio: React.FC = () => {
       <div style={{
         maxWidth: '1400px',
         margin: '0 auto',
-        padding: '0 30px',
+        padding: isMobile ? '0 1rem' : '0 2rem',
         position: 'relative',
         zIndex: 2
       }}>
-        
         {/* כותרת */}
         <h2 style={{
           fontFamily: 'Orbitron, monospace',
-          fontSize: '3rem',
+          fontSize: isMobile ? '2rem' : '3rem',
           fontWeight: 900,
           textAlign: 'center',
-          marginBottom: '3rem',
-          background: 'linear-gradient(135deg, #ffffff, #a855f7, #8b5cf6)',
-          backgroundSize: '200% 200%',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
+          marginBottom: '1rem',
+          color: '#ffffff',
           textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
-          animation: 'textGlow 4s ease-in-out infinite, gradientShift 8s ease-in-out infinite'
+          animation: 'textGlow 3s ease-in-out infinite'
         }}>
           תיק עבודות
         </h2>
 
-        {/* Grid פרויקטים */}
+        <p style={{
+          fontFamily: 'Rajdhani, sans-serif',
+          fontSize: isMobile ? '1rem' : '1.2rem',
+          textAlign: 'center',
+          marginBottom: '3rem',
+          color: '#cbd5e1',
+          maxWidth: '800px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          lineHeight: 1.6
+        }}>
+          פרויקטים נבחרים שמדגימים את היכולות והניסיון שלנו בפיתוח דיגיטלי
+        </p>
+
+        {/* גריד פרויקטים */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-          gap: '2rem'
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(400px, 1fr))',
+          gap: isMobile ? '1.5rem' : '2rem',
+          marginTop: '2rem'
         }}>
           {projects.map((project, index) => (
             <div
@@ -154,139 +174,128 @@ const Portfolio: React.FC = () => {
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(168, 85, 247, 0.2)',
-                borderRadius: '20px',
-                padding: '2rem',
-                transition: 'all 0.4s ease',
+                borderRadius: '16px',
+                padding: isMobile ? '1.5rem' : '2rem',
                 backdropFilter: 'blur(10px)',
-                cursor: 'pointer',
-                opacity: visibleProjects.includes(project.id) ? 1 : 0,
+                transition: 'all 0.3s ease',
                 transform: visibleProjects.includes(project.id) ? 'translateY(0)' : 'translateY(50px)',
-                animation: visibleProjects.includes(project.id) ? `slideInUp 0.6s ease-out ${index * 0.2}s both` : 'none',
+                opacity: visibleProjects.includes(project.id) ? '1' : '0',
+                animation: visibleProjects.includes(project.id) ? `slideInUp 0.6s ease-out ${index * 0.1}s both` : 'none',
                 position: 'relative',
                 overflow: 'hidden'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-10px) scale(1.02)';
-                e.currentTarget.style.boxShadow = '0 25px 50px rgba(168, 85, 247, 0.3)';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.4)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(168, 85, 247, 0.2)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.2)';
                 e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.2)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
               }}
             >
-              {/* תמונה או אייקון פרויקט */}
-              {project.thumbnail ? (
-                <div style={{
-                  marginBottom: '1.5rem',
-                  textAlign: 'center',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  borderRadius: '15px',
-                  animation: `pulse 3s ease-in-out infinite ${index * 0.3}s`
-                }}>
-                  <img 
-                    src={project.thumbnail} 
+              {/* תמונה או אייקון */}
+              <div style={{
+                width: '100%',
+                height: isMobile ? '200px' : '250px',
+                borderRadius: '12px',
+                marginBottom: '1.5rem',
+                overflow: 'hidden',
+                position: 'relative',
+                background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1))',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                {project.thumbnail ? (
+                  <img
+                    src={project.thumbnail}
                     alt={project.title}
                     style={{
                       width: '100%',
-                      height: '200px',
+                      height: '100%',
                       objectFit: 'cover',
-                      borderRadius: '15px',
-                      border: '2px solid rgba(168, 85, 247, 0.3)',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                      e.currentTarget.style.border = '2px solid rgba(168, 85, 247, 0.6)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.border = '2px solid rgba(168, 85, 247, 0.3)';
+                      borderRadius: '12px'
                     }}
                   />
-                </div>
-              ) : (
+                ) : (
+                  <div style={{
+                    fontSize: isMobile ? '3rem' : '4rem',
+                    animation: 'pulse 2s ease-in-out infinite',
+                    filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
+                  }}>
+                    {project.icon}
+                  </div>
+                )}
                 <div style={{
-                  fontSize: '4rem',
-                  marginBottom: '1.5rem',
-                  textAlign: 'center',
-                  animation: `pulse 3s ease-in-out infinite ${index * 0.3}s`
-                }}>
-                  {project.icon}
-                </div>
-              )}
-
-              {/* כותרת פרויקט */}
-              <h3 style={{
-                fontFamily: 'Rajdhani, sans-serif',
-                fontSize: '1.5rem',
-                fontWeight: 700,
-                color: '#ffffff',
-                marginBottom: '1rem',
-                textAlign: 'right',
-                direction: 'rtl'
-              }}>
-                {project.title}
-              </h3>
-
-              {/* תיאור פרויקט */}
-              <p style={{
-                fontFamily: 'Rajdhani, sans-serif',
-                fontSize: '1rem',
-                color: '#e2e8f0',
-                lineHeight: 1.6,
-                marginBottom: '1.5rem',
-                textAlign: 'right',
-                direction: 'rtl'
-              }}>
-                {project.description}
-              </p>
-
-              {/* תגיות */}
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '0.5rem',
-                marginBottom: '1.5rem',
-                justifyContent: 'flex-end'
-              }}>
-                {project.tags.map((tag, tagIndex) => (
-                  <span
-                    key={tag}
-                    style={{
-                      background: 'rgba(168, 85, 247, 0.2)',
-                      color: '#a855f7',
-                      padding: '0.25rem 0.75rem',
-                      borderRadius: '20px',
-                      fontSize: '0.8rem',
-                      fontWeight: 600,
-                      border: '1px solid rgba(168, 85, 247, 0.3)',
-                      transition: 'all 0.3s ease',
-                      animation: `fadeInUp 0.8s ease-out ${index * 0.2 + tagIndex * 0.1}s both`
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(168, 85, 247, 0.3)';
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(168, 85, 247, 0.2)';
-                      e.currentTarget.style.transform = 'scale(1)';
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(45deg, rgba(168, 85, 247, 0.1), transparent)',
+                  borderRadius: '12px'
+                }} />
               </div>
 
-              {/* כפתור צפייה */}
+              {/* תוכן */}
               <div style={{
-                textAlign: 'center'
+                textAlign: 'right',
+                direction: 'rtl'
               }}>
-                {project.link ? (
+                <h3 style={{
+                  fontFamily: 'Rajdhani, sans-serif',
+                  fontSize: isMobile ? '1.2rem' : '1.4rem',
+                  fontWeight: 700,
+                  color: '#ffffff',
+                  marginBottom: '0.8rem',
+                  textShadow: '0 0 20px rgba(168, 85, 247, 0.3)'
+                }}>
+                  {project.title}
+                </h3>
+
+                <p style={{
+                  fontFamily: 'Rajdhani, sans-serif',
+                  fontSize: isMobile ? '0.9rem' : '1rem',
+                  color: '#cbd5e1',
+                  lineHeight: 1.6,
+                  marginBottom: '1.5rem',
+                  direction: 'rtl',
+                  textAlign: 'right'
+                }}>
+                  {project.description}
+                </p>
+
+                {/* תגיות */}
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '0.5rem',
+                  marginBottom: '1.5rem',
+                  justifyContent: 'flex-end'
+                }}>
+                  {project.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      style={{
+                        background: 'rgba(168, 85, 247, 0.2)',
+                        color: '#a855f7',
+                        padding: '0.3rem 0.8rem',
+                        borderRadius: '20px',
+                        fontSize: isMobile ? '0.7rem' : '0.8rem',
+                        fontWeight: 600,
+                        border: '1px solid rgba(168, 85, 247, 0.3)',
+                        backdropFilter: 'blur(10px)'
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* כפתור צפייה */}
+                {project.link && (
                   <a
                     href={project.link}
                     target="_blank"
@@ -294,10 +303,10 @@ const Portfolio: React.FC = () => {
                     style={{
                       background: 'linear-gradient(135deg, #a855f7, #8b5cf6)',
                       border: 'none',
-                      borderRadius: '25px',
-                      padding: '0.75rem 1.5rem',
+                      borderRadius: '8px',
+                      padding: isMobile ? '0.6rem 1.2rem' : '0.8rem 1.5rem',
                       fontFamily: 'Rajdhani, sans-serif',
-                      fontSize: '0.9rem',
+                      fontSize: isMobile ? '0.8rem' : '0.9rem',
                       fontWeight: 600,
                       color: 'white',
                       cursor: 'pointer',
@@ -305,55 +314,11 @@ const Portfolio: React.FC = () => {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.5rem',
-                      textTransform: 'uppercase',
-                      letterSpacing: '1px',
                       textDecoration: 'none',
                       position: 'relative',
-                      overflow: 'hidden'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)';
-                      e.currentTarget.style.boxShadow = '0 10px 25px rgba(168, 85, 247, 0.4)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
-                  >
-                    <span style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: '-100%',
+                      overflow: 'hidden',
                       width: '100%',
-                      height: '100%',
-                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                      transition: 'left 0.5s'
-                    }} />
-                    צפו בפרויקט
-                    <span style={{ fontSize: '1rem' }}>🔗</span>
-                  </a>
-                ) : (
-                  <a
-                    href="#contact"
-                    style={{
-                      background: 'linear-gradient(135deg, #a855f7, #8b5cf6)',
-                      border: 'none',
-                      borderRadius: '25px',
-                      padding: '0.75rem 1.5rem',
-                      fontFamily: 'Rajdhani, sans-serif',
-                      fontSize: '0.9rem',
-                      fontWeight: 600,
-                      color: 'white',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      textTransform: 'uppercase',
-                      letterSpacing: '1px',
-                      textDecoration: 'none',
-                      position: 'relative',
-                      overflow: 'hidden'
+                      justifyContent: 'center'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)';
@@ -377,6 +342,17 @@ const Portfolio: React.FC = () => {
                   </a>
                 )}
               </div>
+
+              {/* אפקט זוהר */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: '-100%',
+                width: '100%',
+                height: '100%',
+                background: 'linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.1), transparent)',
+                transition: 'left 0.5s ease'
+              }} />
             </div>
           ))}
         </div>
@@ -384,25 +360,13 @@ const Portfolio: React.FC = () => {
 
       <style>{`
         @keyframes slideInUp {
-          0% { 
-            opacity: 0; 
-            transform: translateY(50px); 
-          }
-          100% { 
-            opacity: 1; 
-            transform: translateY(0); 
-          }
+          0% { opacity: 0; transform: translateY(50px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes pulse {
-          0%, 100% { 
-            transform: scale(1); 
-            opacity: 1; 
-          }
-          50% { 
-            transform: scale(1.1); 
-            opacity: 0.8; 
-          }
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.1); opacity: 0.8; }
         }
         
         @keyframes gradientShift {
@@ -411,22 +375,43 @@ const Portfolio: React.FC = () => {
         }
         
         @keyframes textGlow {
-          0%, 100% { 
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5); 
-          }
-          50% { 
-            text-shadow: 0 0 50px rgba(168, 85, 247, 0.8); 
-          }
+          0%, 100% { text-shadow: 0 0 30px rgba(168, 85, 247, 0.5); }
+          50% { text-shadow: 0 0 50px rgba(168, 85, 247, 0.8); }
         }
-        
-        @keyframes fadeInUp {
-          0% { 
-            opacity: 0; 
-            transform: translateY(20px); 
+
+        @media (max-width: 768px) {
+          .portfolio-title {
+            font-size: 2rem !important;
           }
-          100% { 
-            opacity: 1; 
-            transform: translateY(0); 
+          
+          .portfolio-subtitle {
+            font-size: 1rem !important;
+          }
+          
+          .portfolio-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+          
+          .project-card {
+            padding: 1.5rem !important;
+          }
+          
+          .project-image {
+            height: 200px !important;
+          }
+          
+          .project-title {
+            font-size: 1.2rem !important;
+          }
+          
+          .project-description {
+            font-size: 0.9rem !important;
+          }
+          
+          .project-button {
+            font-size: 0.8rem !important;
+            padding: 0.6rem 1.2rem !important;
           }
         }
       `}</style>

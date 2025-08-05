@@ -5,6 +5,7 @@ const rotatingWords = ["בניית אתרים", "ניהול קמפיינים", "
 const Hero: React.FC = () => {
   const [currentWord, setCurrentWord] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,12 +15,24 @@ const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  useEffect(() => {
+    if (!isMobile) {
+      const handleMouseMove = (e: MouseEvent) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      };
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, [isMobile]);
 
   return (
     <section id="home" style={{
@@ -31,7 +44,7 @@ const Hero: React.FC = () => {
       background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0f0f23 100%)',
       color: 'white',
       overflow: 'hidden',
-      padding: '2rem'
+      padding: isMobile ? '1rem' : '2rem'
     }}>
       
       {/* רקע מונפש */}
@@ -46,19 +59,131 @@ const Hero: React.FC = () => {
         animation: 'gradientShift 10s ease-in-out infinite'
       }} />
 
-      {/* Glow אינטראקטיבי */}
-      <div style={{
-        position: 'absolute',
-        width: '300px',
-        height: '300px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%)',
-        left: mousePosition.x - 150,
-        top: mousePosition.y - 150,
-        pointerEvents: 'none',
-        zIndex: 2,
-        transition: 'all 0.2s ease-out'
-      }} />
+      {/* Glow אינטראקטיבי - רק בדסקטופ */}
+      {!isMobile && (
+        <div style={{
+          position: 'absolute',
+          width: '300px',
+          height: '300px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%)',
+          left: mousePosition.x - 150,
+          top: mousePosition.y - 150,
+          pointerEvents: 'none',
+          zIndex: 2,
+          transition: 'all 0.2s ease-out'
+        }} />
+      )}
+
+      {/* כרטיסי Glassmorphism מונפשים - רק בדסקטופ */}
+      {!isMobile && (
+        <>
+          <div style={{
+            position: 'absolute',
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '16px',
+            padding: '1rem',
+            width: '200px',
+            textAlign: 'center',
+            backdropFilter: 'blur(10px)',
+            top: '20%',
+            left: '10%',
+            zIndex: 5,
+            animation: 'float 6s ease-in-out infinite'
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '0.5rem'
+            }}>
+              <div style={{
+                width: '2rem',
+                height: '2rem',
+                background: '#a855f7',
+                borderRadius: '50%',
+                animation: 'pulse 2s ease-in-out infinite'
+              }} />
+            </div>
+            <h4 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: 'white', marginBottom: '0.25rem' }}>
+              UX / UI
+            </h4>
+            <p style={{ fontSize: '0.875rem', color: '#9ca3af' }}>
+              עיצוב חוויית משתמש מודרנית
+            </p>
+          </div>
+
+          <div style={{
+            position: 'absolute',
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '16px',
+            padding: '1rem',
+            width: '200px',
+            textAlign: 'center',
+            backdropFilter: 'blur(10px)',
+            top: '45%',
+            right: '10%',
+            zIndex: 5,
+            animation: 'float 6s ease-in-out infinite 2s'
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '0.5rem'
+            }}>
+              <div style={{
+                width: '2rem',
+                height: '2rem',
+                background: '#a855f7',
+                borderRadius: '50%',
+                animation: 'pulse 2s ease-in-out infinite 1s'
+              }} />
+            </div>
+            <h4 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: 'white', marginBottom: '0.25rem' }}>
+              SEO
+            </h4>
+            <p style={{ fontSize: '0.875rem', color: '#9ca3af' }}>
+              אופטימיזציה לקידום אתרים
+            </p>
+          </div>
+
+          <div style={{
+            position: 'absolute',
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '16px',
+            padding: '1rem',
+            width: '200px',
+            textAlign: 'center',
+            backdropFilter: 'blur(10px)',
+            top: '70%',
+            left: '10%',
+            zIndex: 5,
+            animation: 'float 6s ease-in-out infinite 4s'
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '0.5rem'
+            }}>
+              <div style={{
+                width: '2rem',
+                height: '2rem',
+                background: '#a855f7',
+                borderRadius: '50%',
+                animation: 'pulse 2s ease-in-out infinite 2s'
+              }} />
+            </div>
+            <h4 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: 'white', marginBottom: '0.25rem' }}>
+              Campaigns
+            </h4>
+            <p style={{ fontSize: '0.875rem', color: '#9ca3af' }}>
+              ניהול קמפיינים מתקדמים
+            </p>
+          </div>
+        </>
+      )}
 
       {/* תוכן הירו */}
       <div style={{
@@ -68,21 +193,22 @@ const Hero: React.FC = () => {
         maxWidth: '1200px',
         width: '100%',
         animation: 'fadeInUp 1s ease-out',
-        paddingBottom: '8rem' // מרווח לכרטיסי שירותים
+        paddingBottom: isMobile ? '4rem' : '8rem'
       }}>
         
         <h1 style={{
           fontFamily: 'Orbitron, monospace',
-          fontSize: '3.5rem',
+          fontSize: isMobile ? '2rem' : '3.5rem',
           fontWeight: 900,
           color: '#ffffff',
           marginBottom: '1rem',
           textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
-          animation: 'textGlow 3s ease-in-out infinite'
+          animation: 'textGlow 3s ease-in-out infinite',
+          lineHeight: isMobile ? '1.2' : '1.1'
         }}>
           צוות עילית מקצועי
           <div style={{
-            height: '4.5rem',
+            height: isMobile ? '3rem' : '4.5rem',
             position: 'relative',
             overflow: 'hidden',
             marginTop: '0.5rem',
@@ -92,7 +218,7 @@ const Hero: React.FC = () => {
           }}>
             <span style={{
               color: '#a855f7',
-              fontSize: '3.5rem',
+              fontSize: isMobile ? '2rem' : '3.5rem',
               fontWeight: 900,
               textShadow: '0 0 30px rgba(168, 85, 247, 0.8)',
               animation: 'slideIn 0.6s ease-out',
@@ -107,7 +233,7 @@ const Hero: React.FC = () => {
 
         <p style={{
           fontFamily: 'Rajdhani, sans-serif',
-          fontSize: '1.6rem',
+          fontSize: isMobile ? '1.2rem' : '1.6rem',
           color: '#e2e8f0',
           marginBottom: '1.5rem',
           fontWeight: 600,
@@ -118,14 +244,15 @@ const Hero: React.FC = () => {
 
         <p style={{
           fontFamily: 'Rajdhani, sans-serif',
-          fontSize: '1.1rem',
+          fontSize: isMobile ? '0.9rem' : '1.1rem',
           color: '#cbd5e1',
           marginBottom: '3rem',
           lineHeight: 1.7,
           maxWidth: '800px',
           marginLeft: 'auto',
           marginRight: 'auto',
-          animation: 'fadeInUp 1s ease-out 0.6s both'
+          animation: 'fadeInUp 1s ease-out 0.6s both',
+          padding: isMobile ? '0 1rem' : '0'
         }}>
           עם רקע אמנותי בכתיבה ומוזיקה, ניסיון של מעל 25 שנה בחדשנות ויזמות,
           וניהול קמפיינים דיגיטליים בהיקפים של מיליונים – אנחנו הופכים רעיונות לדיגיטל שמייצר הצלחה.
@@ -140,8 +267,9 @@ const Hero: React.FC = () => {
           alignItems: 'center',
           animation: 'fadeInUp 1s ease-out 0.9s both',
           width: '100%',
-          maxWidth: '500px',
-          margin: '0 auto'
+          maxWidth: isMobile ? '100%' : '500px',
+          margin: '0 auto',
+          padding: isMobile ? '0 1rem' : '0'
         }}>
           <a
             href="#contact"
@@ -149,9 +277,9 @@ const Hero: React.FC = () => {
               background: 'linear-gradient(135deg, #a855f7, #8b5cf6)',
               border: 'none',
               borderRadius: '50px',
-              padding: '1rem 2.5rem',
+              padding: isMobile ? '0.8rem 2rem' : '1rem 2.5rem',
               fontFamily: 'Rajdhani, sans-serif',
-              fontSize: '1.1rem',
+              fontSize: isMobile ? '0.9rem' : '1.1rem',
               fontWeight: 600,
               color: 'white',
               cursor: 'pointer',
@@ -193,9 +321,9 @@ const Hero: React.FC = () => {
             style={{
               border: '2px solid #e2e8f0',
               borderRadius: '50px',
-              padding: '1rem 2.5rem',
+              padding: isMobile ? '0.8rem 2rem' : '1rem 2.5rem',
               fontFamily: 'Rajdhani, sans-serif',
-              fontSize: '1.1rem',
+              fontSize: isMobile ? '0.9rem' : '1.1rem',
               fontWeight: 600,
               color: '#e2e8f0',
               cursor: 'pointer',
@@ -206,6 +334,8 @@ const Hero: React.FC = () => {
               textTransform: 'uppercase',
               letterSpacing: '1px',
               textDecoration: 'none',
+              position: 'relative',
+              overflow: 'hidden',
               width: '100%',
               justifyContent: 'center'
             }}
@@ -224,19 +354,20 @@ const Hero: React.FC = () => {
           </a>
         </div>
       </div>
-
+      
       {/* כרטיסי שירותים בתחתית */}
       <div style={{
         position: 'absolute',
-        bottom: '2rem',
+        bottom: isMobile ? '1rem' : '2rem',
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',
-        gap: '2rem',
+        gap: isMobile ? '1rem' : '2rem',
         zIndex: 5,
         flexWrap: 'wrap',
         justifyContent: 'center',
-        maxWidth: '90vw'
+        maxWidth: '90vw',
+        padding: isMobile ? '0 1rem' : '0'
       }}>
         {[
           { title: "UX / UI", description: "עיצוב חוויית משתמש מודרנית" },
@@ -249,12 +380,12 @@ const Hero: React.FC = () => {
               background: 'rgba(255, 255, 255, 0.1)',
               border: '1px solid rgba(255, 255, 255, 0.2)',
               borderRadius: '12px',
-              padding: '1rem 1.5rem',
+              padding: isMobile ? '0.8rem 1rem' : '1rem 1.5rem',
               textAlign: 'center',
               backdropFilter: 'blur(10px)',
               transition: 'all 0.3s ease',
               animation: `fadeInUp 0.8s ease-out ${1.2 + index * 0.1}s both`,
-              minWidth: '150px',
+              minWidth: isMobile ? '120px' : '150px',
               flex: '1 1 auto'
             }}
             onMouseEnter={(e) => {
@@ -269,15 +400,15 @@ const Hero: React.FC = () => {
             }}
           >
             <div style={{
-              width: '2rem',
-              height: '2rem',
+              width: isMobile ? '1.5rem' : '2rem',
+              height: isMobile ? '1.5rem' : '2rem',
               background: '#a855f7',
               borderRadius: '50%',
               margin: '0 auto 0.5rem',
               animation: `pulse 2s ease-in-out infinite ${index * 0.3}s`
             }} />
             <h4 style={{ 
-              fontSize: '1rem', 
+              fontSize: isMobile ? '0.8rem' : '1rem', 
               fontWeight: 'bold', 
               color: '#ffffff', 
               marginBottom: '0.25rem' 
@@ -285,7 +416,7 @@ const Hero: React.FC = () => {
               {service.title}
             </h4>
             <p style={{ 
-              fontSize: '0.8rem', 
+              fontSize: isMobile ? '0.7rem' : '0.8rem', 
               color: '#cbd5e1' 
             }}>
               {service.description}
@@ -295,6 +426,11 @@ const Hero: React.FC = () => {
       </div>
 
       <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        
         @keyframes pulse {
           0%, 100% { transform: scale(1); opacity: 1; }
           50% { transform: scale(1.1); opacity: 0.8; }
@@ -318,6 +454,31 @@ const Hero: React.FC = () => {
         @keyframes fadeInUp {
           0% { opacity: 0; transform: translateY(30px); }
           100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+          .hero-title {
+            font-size: 2rem !important;
+            line-height: 1.2 !important;
+          }
+          
+          .hero-subtitle {
+            font-size: 1.2rem !important;
+          }
+          
+          .hero-description {
+            font-size: 0.9rem !important;
+            padding: 0 1rem !important;
+          }
+          
+          .hero-buttons {
+            padding: 0 1rem !important;
+          }
+          
+          .hero-button {
+            font-size: 0.9rem !important;
+            padding: 0.8rem 2rem !important;
+          }
         }
       `}</style>
     </section>
