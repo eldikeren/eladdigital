@@ -79,12 +79,13 @@ const Services: React.FC = () => {
 
   return (
     <section id="services" style={{
-      position: 'relative',
-      padding: isMobile ? '3rem 0' : '5rem 0',
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #0a0a0a 100%)',
+      padding: isMobile ? '4rem 0' : '5rem 0',
+      background: 'linear-gradient(135deg, #16213e 0%, #1a1a2e 50%, #0f0f23 100%)',
       color: 'white',
+      position: 'relative',
       overflow: 'hidden'
     }}>
+      
       {/* רקע מונפש */}
       <div style={{
         position: 'absolute',
@@ -92,52 +93,55 @@ const Services: React.FC = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)',
+        background: 'radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
         zIndex: 1,
-        animation: 'gradientShift 15s ease-in-out infinite'
+        animation: 'gradientShift 12s ease-in-out infinite'
       }} />
 
       <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: isMobile ? '0 1rem' : '0 30px',
         position: 'relative',
-        zIndex: 2
+        zIndex: 10,
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: isMobile ? '0 1rem' : '0 30px'
       }}>
+        
         {/* כותרת */}
-        <h2 style={{
-          fontFamily: 'Orbitron, monospace',
-          fontSize: isMobile ? '2rem' : '3rem',
-          fontWeight: 900,
+        <div style={{
           textAlign: 'center',
-          marginBottom: '1rem',
-          color: '#ffffff',
-          textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
-          animation: 'textGlow 3s ease-in-out infinite'
+          marginBottom: isMobile ? '3rem' : '4rem',
+          animation: 'fadeInUp 1s ease-out 0.3s both'
         }}>
-          השירותים שלנו
-        </h2>
+          <h2 style={{
+            fontSize: isMobile ? '2rem' : '3rem',
+            fontWeight: 900,
+            color: '#ffffff',
+            marginBottom: '1rem',
+            textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
+            direction: 'rtl',
+            unicodeBidi: 'bidi-override'
+          }}>
+            השירותים שלנו
+          </h2>
+          <p style={{
+            fontSize: isMobile ? '1rem' : '1.2rem',
+            color: '#cbd5e1',
+            maxWidth: '800px',
+            margin: '0 auto',
+            lineHeight: 1.6,
+            wordWrap: 'break-word',
+            overflowWrap: 'break-word'
+          }}>
+            פתרונות דיגיטליים מקיפים המשלבים טכנולוגיה מתקדמת עם עיצוב חדשני
+          </p>
+        </div>
 
-        <p style={{
-          fontFamily: 'Rajdhani, sans-serif',
-          fontSize: isMobile ? '1rem' : '1.2rem',
-          textAlign: 'center',
-          marginBottom: '3rem',
-          color: '#cbd5e1',
-          maxWidth: '800px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          lineHeight: 1.6
-        }}>
-          פתרונות דיגיטליים מקיפים שמביאים תוצאות אמיתיות לעסק שלכם
-        </p>
-
-        {/* כרטיסי שירותים */}
+        {/* רשת השירותים */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: isMobile ? '1.5rem' : '2rem',
-          marginTop: '2rem'
+          gap: isMobile ? '2rem' : '2rem',
+          animation: 'fadeInUp 1s ease-out 0.6s both'
         }}>
           {services.map((service, index) => (
             <div

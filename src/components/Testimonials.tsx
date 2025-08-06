@@ -2,63 +2,73 @@ import React, { useEffect, useState } from "react";
 
 const testimonials = [
   {
-    id: 1,
+    text: "צוות מקצועי ברמה הגבוהה ביותר! קיבלנו אתר מדהים שממיר בצורה יוצאת דופן, והקמפיינים שלהם שינו לנו את כל המשחק.",
     name: "דנה לוי",
-    title: "מנהלת שיווק, StartupX",
-    quote: "צוות מקצועי ברמה הגבוהה ביותר! קיבלנו אתר מדהים שממיר בצורה יוצאת דופן, והקמפיינים שלהם שינו לנו את כל המשחק.",
-    avatar: "👩‍💼"
+    position: "מנהלת שיווק, StartupX",
+    avatar: "👩‍💼",
+    rating: 5
   },
   {
-    id: 2,
+    text: "העבודה איתם הייתה חוויה יוצאת דופן. השירות האכפתיות, והיכולת להוציא לפועל בדיוק מה שדמיינו – פשוט וואו!",
     name: "רועי כהן",
-    title: "מנכ\"ל, DigitalPro",
-    quote: "העבודה איתם הייתה חוויה יוצאת דופן. השירות, האכפתיות, והיכולת להוציא לפועל בדיוק מה שדמיינו – פשוט וואו!",
-    avatar: "👨‍💼"
+    position: "מנכ\"ל, DigitalPro",
+    avatar: "👨‍💼",
+    rating: 5
   },
   {
-    id: 3,
+    text: "הם שילבו עיצוב חדשני עם טכנולוגיה מתקדמת והצליחו להעלות את ההמרות שלנו בלמעלה מ-200%. מומלץ בחום!",
     name: "לירון מזרחי",
-    title: "בעלים, EcomStore",
-    quote: "הם שילבו עיצוב חדשני עם טכנולוגיה מתקדמת, והצליחו להעלות את ההמרות שלנו בלמעלה מ-200%. מומלץ בחום!",
-    avatar: "👨‍💻"
+    position: "בעלים, EcomStore",
+    avatar: "👨‍💻",
+    rating: 5
   }
 ];
 
 const Testimonials: React.FC = () => {
-  const [visibleTestimonials, setVisibleTestimonials] = useState<number[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const testimonialId = parseInt(entry.target.getAttribute('data-id') || '0');
-            setVisibleTestimonials(prev => {
-              if (!prev.includes(testimonialId)) {
-                return [...prev, testimonialId];
-              }
-              return prev;
-            });
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
       { threshold: 0.1 }
     );
 
-    const testimonials = document.querySelectorAll('[data-id]');
-    testimonials.forEach(testimonial => observer.observe(testimonial));
+    const element = document.getElementById('testimonials');
+    if (element) {
+      observer.observe(element);
+    }
 
-    return () => observer.disconnect();
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
   }, []);
 
   return (
     <section id="testimonials" style={{
-      position: 'relative',
-      padding: '5rem 0',
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #0a0a0a 100%)',
+      padding: isMobile ? '4rem 1rem' : '5rem 0',
+      background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)',
       color: 'white',
+      position: 'relative',
       overflow: 'hidden'
     }}>
+      
       {/* רקע מונפש */}
       <div style={{
         position: 'absolute',
@@ -66,179 +76,159 @@ const Testimonials: React.FC = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)',
+        background: 'radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
         zIndex: 1,
         animation: 'gradientShift 15s ease-in-out infinite'
       }} />
 
       <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '0 30px',
         position: 'relative',
-        zIndex: 2
+        zIndex: 10,
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: isMobile ? '0 1rem' : '0 2rem'
       }}>
+        
         {/* כותרת */}
-        <h2 style={{
-          fontFamily: 'Orbitron, monospace',
-          fontSize: '3rem',
-          fontWeight: 900,
+        <div style={{
           textAlign: 'center',
-          marginBottom: '3rem',
-          background: 'linear-gradient(135deg, #ffffff, #a855f7, #8b5cf6)',
-          backgroundSize: '200% 200%',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
-          animation: 'textGlow 4s ease-in-out infinite, gradientShift 8s ease-in-out infinite'
+          marginBottom: isMobile ? '3rem' : '4rem',
+          animation: 'fadeInUp 1s ease-out 0.3s both'
         }}>
-          מה הלקוחות שלנו אומרים
-        </h2>
+          <h2 style={{
+            fontSize: isMobile ? '2rem' : '3rem',
+            fontWeight: 900,
+            color: '#ffffff',
+            marginBottom: '1rem',
+            textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
+            direction: 'rtl',
+            unicodeBidi: 'bidi-override'
+          }}>
+            מה הלקוחות שלנו אומרים
+          </h2>
+          <p style={{
+            fontSize: isMobile ? '1rem' : '1.2rem',
+            color: '#cbd5e1',
+            maxWidth: '800px',
+            margin: '0 auto',
+            lineHeight: 1.6,
+            wordWrap: 'break-word',
+            overflowWrap: 'break-word'
+          }}>
+            עדויות אמיתיות מלקוחות מרוצים על השירות והתוצאות
+          </p>
+        </div>
 
-        {/* Grid עדויות */}
+        {/* רשת העדויות */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-          gap: '2rem'
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))',
+          gap: isMobile ? '2rem' : '2rem',
+          animation: 'fadeInUp 1s ease-out 0.6s both'
         }}>
           {testimonials.map((testimonial, index) => (
             <div
-              key={testimonial.id}
-              data-id={testimonial.id}
+              key={testimonial.name}
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(168, 85, 247, 0.2)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
                 borderRadius: '20px',
-                padding: '2.5rem',
-                transition: 'all 0.4s ease',
+                padding: isMobile ? '1.5rem' : '2rem',
                 backdropFilter: 'blur(10px)',
-                cursor: 'pointer',
-                opacity: visibleTestimonials.includes(testimonial.id) ? 1 : 0,
-                transform: visibleTestimonials.includes(testimonial.id) ? 'translateY(0)' : 'translateY(50px)',
-                animation: visibleTestimonials.includes(testimonial.id) ? `slideInUp 0.6s ease-out ${index * 0.2}s both` : 'none',
-                position: 'relative',
-                overflow: 'hidden'
+                transition: 'all 0.3s ease',
+                animation: `fadeInUp 0.8s ease-out ${0.9 + index * 0.2}s both`,
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-10px) scale(1.02)';
-                e.currentTarget.style.boxShadow = '0 25px 50px rgba(168, 85, 247, 0.3)';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.4)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(168, 85, 247, 0.3)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.2)';
                 e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              {/* Glow effect */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.1) 0%, transparent 70%)',
-                opacity: 0,
-                transition: 'opacity 0.3s ease',
-                pointerEvents: 'none'
-              }} />
-
-              {/* ציטוט */}
-              <div style={{
-                position: 'relative',
-                marginBottom: '2rem'
+              {/* טקסט העדות */}
+              <p style={{
+                fontSize: isMobile ? '0.9rem' : '1.1rem',
+                lineHeight: 1.7,
+                color: '#e2e8f0',
+                marginBottom: '1.5rem',
+                fontStyle: 'italic',
+                direction: 'rtl',
+                textAlign: 'right',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}>
-                <div style={{
-                  fontSize: '4rem',
-                  color: '#a855f7',
-                  opacity: 0.3,
-                  position: 'absolute',
-                  top: '-1rem',
-                  right: '-1rem',
-                  animation: `pulse 3s ease-in-out infinite ${index * 0.3}s`
-                }}>
-                  "
-                </div>
-                <p style={{
-                  fontSize: '1.1rem',
-                  color: '#e2e8f0',
-                  lineHeight: 1.7,
-                  fontStyle: 'italic',
-                  marginTop: '1rem',
-                  animation: `fadeInUp 0.8s ease-out ${index * 0.2 + 0.3}s both`
-                }}>
-                  {testimonial.quote}
-                </p>
-              </div>
+                "{testimonial.text}"
+              </p>
 
-              {/* פרטי הלקוח */}
+              {/* מידע על הלקוח */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1rem',
-                animation: `fadeInUp 0.8s ease-out ${index * 0.2 + 0.5}s both`
+                justifyContent: 'flex-end'
               }}>
                 <div style={{
-                  width: '4rem',
-                  height: '4rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-end'
+                }}>
+                  <h4 style={{
+                    fontSize: isMobile ? '1rem' : '1.1rem',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    marginBottom: '0.25rem',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
+                  }}>
+                    {testimonial.name}
+                  </h4>
+                  <p style={{
+                    fontSize: isMobile ? '0.8rem' : '0.9rem',
+                    color: '#a855f7',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
+                  }}>
+                    {testimonial.position}
+                  </p>
+                </div>
+                
+                {/* אווטאר */}
+                <div style={{
+                  width: isMobile ? '3rem' : '4rem',
+                  height: isMobile ? '3rem' : '4rem',
                   background: 'linear-gradient(135deg, #a855f7, #8b5cf6)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '2rem',
-                  animation: `pulse 3s ease-in-out infinite ${index * 0.4}s`,
-                  position: 'relative',
-                  overflow: 'hidden'
+                  fontSize: isMobile ? '1.5rem' : '2rem',
+                  boxShadow: '0 5px 15px rgba(168, 85, 247, 0.3)',
+                  animation: 'pulse 2s ease-in-out infinite'
                 }}>
                   {testimonial.avatar}
-                  {/* Glow effect */}
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
-                    animation: `glow 2s ease-in-out infinite ${index * 0.5}s`
-                  }} />
-                </div>
-                <div>
-                  <h4 style={{
-                    fontSize: '1.2rem',
-                    fontWeight: 'bold',
-                    color: '#ffffff',
-                    marginBottom: '0.25rem'
-                  }}>
-                    {testimonial.name}
-                  </h4>
-                  <p style={{
-                    fontSize: '0.9rem',
-                    color: '#a855f7',
-                    fontWeight: 500
-                  }}>
-                    {testimonial.title}
-                  </p>
                 </div>
               </div>
 
-              {/* כוכבים */}
+              {/* דירוג כוכבים */}
               <div style={{
                 display: 'flex',
-                gap: '0.25rem',
+                justifyContent: 'flex-end',
                 marginTop: '1rem',
-                animation: `fadeInUp 0.8s ease-out ${index * 0.2 + 0.7}s both`
+                gap: '0.25rem'
               }}>
-                {[...Array(5)].map((_, starIndex) => (
+                {[...Array(testimonial.rating)].map((_, i) => (
                   <span
-                    key={starIndex}
+                    key={i}
                     style={{
-                      fontSize: '1.2rem',
+                      fontSize: isMobile ? '1rem' : '1.2rem',
                       color: '#fbbf24',
-                      animation: `starGlow 2s ease-in-out infinite ${starIndex * 0.1}s`
+                      animation: `starGlow ${1 + i * 0.1}s ease-in-out infinite`
                     }}
                   >
                     ⭐
@@ -251,67 +241,24 @@ const Testimonials: React.FC = () => {
       </div>
 
       <style>{`
-        @keyframes slideInUp {
-          0% { 
-            opacity: 0; 
-            transform: translateY(50px); 
-          }
-          100% { 
-            opacity: 1; 
-            transform: translateY(0); 
-          }
+        @keyframes fadeInUp {
+          0% { opacity: 0; transform: translateY(30px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes pulse {
-          0%, 100% { 
-            transform: scale(1); 
-            opacity: 0.3; 
-          }
-          50% { 
-            transform: scale(1.1); 
-            opacity: 0.5; 
-          }
-        }
-        
-        @keyframes glow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.8; }
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.05); opacity: 0.8; }
         }
         
         @keyframes starGlow {
-          0%, 100% { 
-            transform: scale(1); 
-            opacity: 1; 
-          }
-          50% { 
-            transform: scale(1.2); 
-            opacity: 0.8; 
-          }
+          0%, 100% { opacity: 0.7; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
         }
         
         @keyframes gradientShift {
-          0%, 100% { opacity: 0.5; }
-          50% { opacity: 1; }
-        }
-        
-        @keyframes textGlow {
-          0%, 100% { 
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5); 
-          }
-          50% { 
-            text-shadow: 0 0 50px rgba(168, 85, 247, 0.8); 
-          }
-        }
-        
-        @keyframes fadeInUp {
-          0% { 
-            opacity: 0; 
-            transform: translateY(20px); 
-          }
-          100% { 
-            opacity: 1; 
-            transform: translateY(0); 
-          }
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
         }
       `}</style>
     </section>

@@ -2,31 +2,46 @@ import React, { useEffect, useState } from "react";
 
 const About: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
       { threshold: 0.1 }
     );
 
     const element = document.getElementById('about');
-    if (element) observer.observe(element);
+    if (element) {
+      observer.observe(element);
+    }
 
-    return () => observer.disconnect();
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
   }, []);
 
   return (
     <section id="about" style={{
-      position: 'relative',
-      padding: '5rem 0',
-      background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0f0f23 100%)',
+      padding: isMobile ? '4rem 1rem' : '5rem 0',
+      background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
       color: 'white',
+      position: 'relative',
       overflow: 'hidden'
     }}>
       
@@ -37,250 +52,191 @@ const About: React.FC = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)',
+        background: 'radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
         zIndex: 1,
         animation: 'gradientShift 15s ease-in-out infinite'
       }} />
 
       <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '0 30px',
         position: 'relative',
-        zIndex: 2
+        zIndex: 10,
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: isMobile ? '0 1rem' : '0 2rem'
       }}>
         
         {/* כותרת */}
         <h2 style={{
-          fontFamily: 'Orbitron, monospace',
-          fontSize: '3rem',
+          fontSize: isMobile ? '2.5rem' : '3.5rem',
           fontWeight: 900,
+          color: '#ffffff',
+          marginBottom: '2rem',
           textAlign: 'center',
-          marginBottom: '3rem',
-          background: 'linear-gradient(135deg, #ffffff, #a855f7, #8b5cf6)',
-          backgroundSize: '200% 200%',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
           textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
-          animation: 'textGlow 4s ease-in-out infinite, gradientShift 8s ease-in-out infinite',
-          direction: 'rtl'
+          animation: 'fadeInUp 1s ease-out 0.3s both',
+          direction: 'rtl',
+          unicodeBidi: 'bidi-override'
         }}>
           למה לבחור בנו؟
         </h2>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
-          alignItems: 'center'
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gap: isMobile ? '3rem' : '4rem',
+          alignItems: 'center',
+          marginTop: '3rem'
         }}>
           
-          {/* טקסט */}
+          {/* תוכן טקסטואלי */}
           <div style={{
-            animation: isVisible ? 'fadeInLeft 1s ease-out' : 'none'
+            animation: isVisible ? 'fadeInLeft 1s ease-out 0.6s both' : 'none',
+            direction: 'rtl',
+            textAlign: 'right'
           }}>
             <p style={{
-              fontFamily: 'Rajdhani, sans-serif',
-              fontSize: '1.3rem',
-              color: '#e2e8f0',
+              fontSize: isMobile ? '1rem' : '1.2rem',
               lineHeight: 1.8,
+              color: '#e2e8f0',
               marginBottom: '2rem',
-              textAlign: 'right',
-              direction: 'rtl'
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
             }}>
-              עם רקע אמנותי בכתיבה ומוזיקה, ניסיון של מעל 25 שנה בחדשנות ויזמות, וניהול קמפיינים דיגיטליים בהיקפים של מיליונים – אנחנו הופכים רעיונות לדיגיטל שמייצר הצלחה.
+              עם רקע אמנותי בכתיבה ומוזיקה, ניסיון של מעל 25 שנה בחדשנות ויזמות,
+              וניהול קמפיינים דיגיטליים בהיקפים של מיליונים – אנחנו הופכים רעיונות לדיגיטל שמייצר הצלחה.
             </p>
-            
+
             <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem',
-              alignItems: 'flex-end'
+              display: 'grid',
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+              gap: isMobile ? '1.5rem' : '2rem',
+              marginTop: '2rem'
             }}>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                padding: '1rem',
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '12px',
-                border: '1px solid rgba(168, 85, 247, 0.2)',
-                transition: 'all 0.3s ease',
-                width: '100%',
-                justifyContent: 'flex-end'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateX(-5px) scale(1.02)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateX(0) scale(1)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.2)';
-              }}
-              >
-                <span style={{
-                  fontFamily: 'Rajdhani, sans-serif',
-                  fontSize: '1.1rem',
-                  color: '#ffffff',
-                  fontWeight: 600
-                }}>
-                  ניסיון של מעל 25 שנה
-                </span>
-                <span style={{
-                  fontSize: '2rem',
-                  animation: 'pulse 2s ease-in-out infinite'
-                }}>
-                  🎯
-                </span>
-              </div>
-              
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                padding: '1rem',
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '12px',
-                border: '1px solid rgba(168, 85, 247, 0.2)',
-                transition: 'all 0.3s ease',
-                width: '100%',
-                justifyContent: 'flex-end'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateX(-5px) scale(1.02)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateX(0) scale(1)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.2)';
-              }}
-              >
-                <span style={{
-                  fontFamily: 'Rajdhani, sans-serif',
-                  fontSize: '1.1rem',
-                  color: '#ffffff',
-                  fontWeight: 600
-                }}>
-                  חדשנות ויזמות מתמדת
-                </span>
-                <span style={{
-                  fontSize: '2rem',
-                  animation: 'pulse 2s ease-in-out infinite 0.5s'
-                }}>
-                  🚀
-                </span>
-              </div>
-              
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                padding: '1rem',
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '12px',
-                border: '1px solid rgba(168, 85, 247, 0.2)',
-                transition: 'all 0.3s ease',
-                width: '100%',
-                justifyContent: 'flex-end'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateX(-5px) scale(1.02)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateX(0) scale(1)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.style.border = '1px solid rgba(168, 85, 247, 0.2)';
-              }}
-              >
-                <span style={{
-                  fontFamily: 'Rajdhani, sans-serif',
-                  fontSize: '1.1rem',
-                  color: '#ffffff',
-                  fontWeight: 600
-                }}>
-                  רקע אמנותי בכתיבה ומוזיקה
-                </span>
-                <span style={{
-                  fontSize: '2rem',
-                  animation: 'pulse 2s ease-in-out infinite 1s'
-                }}>
-                  💡
-                </span>
-              </div>
+              {[
+                { icon: '🎯', title: 'ניסיון של מעל 25 שנה', description: 'מומחיות מוכחת בתחום הדיגיטל' },
+                { icon: '🚀', title: 'חדשנות ויזמות מתמדת', description: 'טכנולוגיות מתקדמות ופתרונות יצירתיים' },
+                { icon: '💡', title: 'רקע אמנותי בכתיבה ומוזיקה', description: 'יצירתיות ייחודית בכל פרויקט' }
+              ].map((highlight, index) => (
+                <div
+                  key={highlight.title}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '16px',
+                    padding: isMobile ? '1.5rem' : '2rem',
+                    textAlign: 'center',
+                    backdropFilter: 'blur(10px)',
+                    transition: 'all 0.3s ease',
+                    animation: `fadeInUp 0.8s ease-out ${0.9 + index * 0.2}s both`,
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(168, 85, 247, 0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  <div style={{
+                    fontSize: isMobile ? '2.5rem' : '3rem',
+                    marginBottom: '1rem',
+                    animation: 'pulse 2s ease-in-out infinite'
+                  }}>
+                    {highlight.icon}
+                  </div>
+                  <h3 style={{
+                    fontSize: isMobile ? '1.1rem' : '1.3rem',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    marginBottom: '0.5rem',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
+                  }}>
+                    {highlight.title}
+                  </h3>
+                  <p style={{
+                    fontSize: isMobile ? '0.9rem' : '1rem',
+                    color: '#cbd5e1',
+                    lineHeight: 1.6,
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
+                  }}>
+                    {highlight.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* כרטיסי הישגים */}
+          {/* אלמנט ויזואלי מרכזי */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '2rem',
-            animation: isVisible ? 'fadeInRight 1s ease-out 0.3s both' : 'none'
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            animation: isVisible ? 'fadeInRight 1s ease-out 0.9s both' : 'none'
           }}>
-            {[
-              { number: "200+", label: "פרויקטים הושלמו", icon: "🏆" },
-              { number: "25+", label: "שנות ניסיון", icon: "⭐" },
-              { number: "98%", label: "שביעות רצון", icon: "💎" },
-              { number: "24/7", label: "תמיכה זמינה", icon: "🛡️" }
-            ].map((achievement, index) => (
-              <div
-                key={achievement.label}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(168, 85, 247, 0.2)',
-                  borderRadius: '20px',
-                  padding: '2rem',
-                  textAlign: 'center',
-                  backdropFilter: 'blur(10px)',
-                  transition: 'all 0.3s ease',
-                  animation: `fadeInUp 0.8s ease-out ${0.6 + index * 0.1}s both`
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-10px) scale(1.05)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(168, 85, 247, 0.3)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                }}
-              >
-                <div style={{
-                  fontSize: '3rem',
-                  marginBottom: '1rem',
-                  animation: `orbit 4s ease-in-out infinite ${index * 0.5}s`
-                }}>
-                  {achievement.icon}
-                </div>
-                <div style={{
-                  fontFamily: 'Orbitron, monospace',
-                  fontSize: '2.5rem',
-                  fontWeight: 900,
-                  color: '#a855f7',
-                  marginBottom: '0.5rem',
-                  textShadow: '0 0 20px rgba(168, 85, 247, 0.5)',
-                  animation: 'textGlow 3s ease-in-out infinite'
-                }}>
-                  {achievement.number}
-                </div>
-                <div style={{
-                  fontFamily: 'Rajdhani, sans-serif',
-                  fontSize: '1rem',
-                  color: '#e2e8f0',
-                  fontWeight: 600
-                }}>
-                  {achievement.label}
-                </div>
+            <div style={{
+              position: 'relative',
+              width: isMobile ? '200px' : '300px',
+              height: isMobile ? '200px' : '300px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              {/* אייקון מרכזי */}
+              <div style={{
+                fontSize: isMobile ? '4rem' : '6rem',
+                animation: 'pulse 3s ease-in-out infinite',
+                zIndex: 5,
+                position: 'relative'
+              }}>
+                🚀
               </div>
-            ))}
+
+              {/* חלקיקים מסתובבים */}
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    position: 'absolute',
+                    width: '8px',
+                    height: '8px',
+                    background: '#a855f7',
+                    borderRadius: '50%',
+                    animation: `orbit ${4 + i * 0.5}s linear infinite`,
+                    animationDelay: `${i * 0.5}s`,
+                    top: '50%',
+                    left: '50%',
+                    marginTop: '-4px',
+                    marginLeft: '-4px',
+                    transformOrigin: `${isMobile ? '100px' : '150px'} 50%`
+                  }}
+                />
+              ))}
+
+              {/* כוכבים מנצנצים */}
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={`star-${i}`}
+                  style={{
+                    position: 'absolute',
+                    fontSize: '12px',
+                    color: '#fbbf24',
+                    animation: `starGlow ${2 + i * 0.3}s ease-in-out infinite`,
+                    animationDelay: `${i * 0.2}s`,
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`
+                  }}
+                >
+                  ⭐
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -302,23 +258,23 @@ const About: React.FC = () => {
         }
         
         @keyframes pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.1); opacity: 0.8; }
         }
         
         @keyframes orbit {
-          0%, 100% { transform: rotate(0deg) scale(1); }
-          50% { transform: rotate(180deg) scale(1.1); }
+          0% { transform: rotate(0deg) translateX(${isMobile ? '100px' : '150px'}) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(${isMobile ? '100px' : '150px'}) rotate(-360deg); }
+        }
+        
+        @keyframes starGlow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.2); }
         }
         
         @keyframes gradientShift {
-          0%, 100% { opacity: 0.5; }
-          50% { opacity: 1; }
-        }
-        
-        @keyframes textGlow {
-          0%, 100% { text-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
-          50% { text-shadow: 0 0 40px rgba(168, 85, 247, 0.8); }
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
         }
       `}</style>
     </section>
