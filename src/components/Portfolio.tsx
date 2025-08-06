@@ -7,7 +7,7 @@ const projects = [
     tags: ["UX/UI", "React", "SEO"],
     link: "https://amatist.vercel.app/",
     icon: "🏢",
-    thumbnail: null
+    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
   },
   {
     title: "עסקים קטנים - קירו יפו",
@@ -15,7 +15,7 @@ const projects = [
     tags: ["Next.js", "Stripe", "E-Commerce"],
     link: "https://kiro-jaffa.hellofine.dev/",
     icon: "🛒",
-    thumbnail: null
+    thumbnail: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
   },
   {
     title: "קמפיין דיגיטלי ממוקד",
@@ -31,7 +31,7 @@ const projects = [
     tags: ["React Native", "Mobile", "UI/UX"],
     link: "#",
     icon: "📱",
-    thumbnail: null
+    thumbnail: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
   },
   {
     title: "עמוד אומן - ניר פרידמן",
