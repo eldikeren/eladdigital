@@ -25,7 +25,6 @@ const testimonials = [
 ];
 
 const Testimonials: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -42,7 +41,7 @@ const Testimonials: React.FC = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          // Animation will be handled by CSS
         }
       },
       { threshold: 0.1 }
