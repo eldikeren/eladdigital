@@ -52,7 +52,6 @@ const projects = [
 ];
 
 const Portfolio: React.FC = () => {
-  const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -63,30 +62,6 @@ const Portfolio: React.FC = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const projectId = parseInt(entry.target.getAttribute('data-id') || '0');
-            setVisibleProjects(prev => {
-              if (!prev.includes(projectId)) {
-                return [...prev, projectId];
-              }
-              return prev;
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const projects = document.querySelectorAll('[data-id]');
-    projects.forEach(project => observer.observe(project));
-
-    return () => observer.disconnect();
   }, []);
 
   return (
