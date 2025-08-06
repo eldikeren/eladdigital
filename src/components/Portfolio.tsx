@@ -2,68 +2,52 @@ import React, { useEffect, useState } from "react";
 
 const projects = [
   {
-    id: 1,
     title: "חברת יבוא בינלאומית - אמטיסט",
-    description: "אתר תדמית מקצועי לחברת יבוא כימיקלים מתקדמים לתעשייה הישראלית עם עיצוב מודרני ומידע מקיף על המוצרים.",
-    tags: ["Web Design", "React", "Corporate"],
-    icon: "🏭",
+    description: "עיצוב ופיתוח אתר תדמית לחברת הייטק בינלאומית עם חוויית משתמש מרשימה.",
+    tags: ["UX/UI", "React", "SEO"],
     link: "https://amatist.vercel.app/",
-    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    icon: "🏢",
+    thumbnail: null
   },
   {
-    id: 2,
     title: "עסקים קטנים - קירו יפו",
-    description: "אתר תדמית לעסקים קטנים עם עיצוב נקי ומודרני המתאים לקהל היעד המקומי.",
-    tags: ["Web Design", "React", "Small Business"],
-    icon: "🏪",
+    description: "בניית חנות מקוונת עם מערכת סליקה מתקדמת וחוויית רכישה מהירה.",
+    tags: ["Next.js", "Stripe", "E-Commerce"],
     link: "https://kiro-jaffa.hellofine.dev/",
-    thumbnail: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    icon: "🛒",
+    thumbnail: null
   },
   {
-    id: 3,
+    title: "קמפיין דיגיטלי ממוקד",
+    description: "ניהול קמפיין דיגיטלי ממוקד באמצעות תוכנות שמבוססות על AI ML ופותחו על ידינו.",
+    tags: ["Google Ads", "Analytics", "Campaigns"],
+    link: "#",
+    icon: "📈",
+    thumbnail: "/images/seo-dashboard.jpg"
+  },
+  {
     title: "אות-אות - אפליקציה מבוססת בינה מלאכותית",
-    description: "אפליקציה מבוססת בינה מלאכותית ללימוד קריאה לילדים עם טכנולוגיה מתקדמת וחוויית משתמש ייחודית.",
-    tags: ["AI", "React", "Machine Learning"],
-    icon: "🤖",
-    link: "https://otot.app",
-    thumbnail: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    description: "פיתוח אפליקציה מובייל עם ביצועים אופטימליים וחוויית משתמש ייחודית.",
+    tags: ["React Native", "Mobile", "UI/UX"],
+    link: "#",
+    icon: "📱",
+    thumbnail: null
   },
   {
-    id: 4,
     title: "עמוד אומן - ניר פרידמן",
-    description: "אתר תדמית מקצועי לשחקן, זמר ומדבב ניר פרידמן עם עיצוב מודרני וחוויית משתמש מרשימה.",
-    tags: ["Web Design", "React", "Portfolio"],
-    icon: "🎭",
-    link: "https://nir-friedman.vercel.app/",
+    description: "בניית מערכת ניהול תוכן מתקדמת עם ממשק ניהול אינטואיטיבי.",
+    tags: ["CMS", "Backend", "Database"],
+    link: "#",
+    icon: "⚙️",
     thumbnail: "/images/nir-friedman-screenshot.jpg"
   },
   {
-    id: 5,
-    title: "אתר תדמית יוקרתי",
-    description: "עיצוב ופיתוח אתר תדמית לחברת הייטק בינלאומית עם חוויית משתמש מרשימה.",
-    tags: ["UX/UI", "React", "SEO"],
-    icon: "🏢"
-  },
-  {
-    id: 6,
-    title: "קמפיין דיגיטלי ממוקד",
-    description: "ניהול קמפיין דיגיטלי שהביא לעלייה של 300% בהמרות תוך חודש.",
-    tags: ["Google Ads", "Analytics", "Campaigns"],
-    icon: "📈"
-  },
-  {
-    id: 7,
-    title: "פלטפורמת E-Commerce",
-    description: "בניית חנות מקוונת עם מערכת סליקה מתקדמת וחוויית רכישה מהירה.",
-    tags: ["Next.js", "Stripe", "E-Commerce"],
-    icon: "🛒"
-  },
-  {
-    id: 8,
-    title: "אפליקציה מובייל",
-    description: "פיתוח אפליקציה מובייל עם ביצועים אופטימליים וחוויית משתמש ייחודית.",
-    tags: ["React Native", "Mobile", "UI/UX"],
-    icon: "📱"
+    title: "אתר קורפורטיבי",
+    description: "עיצוב ופיתוח אתר קורפורטיבי עם אסטרטגיה דיגיטלית מקיפה.",
+    tags: ["Corporate", "Strategy", "Branding"],
+    link: "#",
+    icon: "🏛️",
+    thumbnail: null
   }
 ];
 
@@ -173,8 +157,7 @@ const Portfolio: React.FC = () => {
         }}>
           {projects.map((project, index) => (
             <div
-              key={project.id}
-              data-id={project.id}
+              key={project.title}
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(168, 85, 247, 0.2)',
@@ -182,9 +165,7 @@ const Portfolio: React.FC = () => {
                 padding: isMobile ? '1.5rem' : '2rem',
                 backdropFilter: 'blur(10px)',
                 transition: 'all 0.3s ease',
-                transform: visibleProjects.includes(project.id) ? 'translateY(0)' : 'translateY(50px)',
-                opacity: visibleProjects.includes(project.id) ? '1' : '0',
-                animation: visibleProjects.includes(project.id) ? `slideInUp 0.6s ease-out ${index * 0.1}s both` : 'none',
+                animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
                 position: 'relative',
                 overflow: 'hidden'
               }}
