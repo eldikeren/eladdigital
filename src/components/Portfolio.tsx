@@ -23,7 +23,7 @@ const projects = [
     tags: ["Google Ads", "Analytics", "Campaigns"],
     link: "#",
     icon: "📈",
-    thumbnail: "/images/seo-dashboard.jpg"
+    thumbnail: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgaGVpZ2h0PSI2MDAiIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwMDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjMjU2M0VGIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRkZGRkZGIi8+Cjx0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmaWxsPSJ3aGl0ZSI+U0VPIEF1dG9tYXRpb24gRGFzaGJvYXJkPC90ZXh0Pgo8dGV4dCB4PSIyMjAiIHk9IjM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIj5LZXkgTWV0cmljcyAtIFRvdGFsIEJhY2tsaW5rczogMCArMTIlIHRoaXMgd2VlazwvdGV4dD4KPHRleHQgeD0iMjIwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzMzMyI+QmFja2xpbmtzIFByb2dyZXNzIChMYXN0IDcgRGF5cyk8L3RleHQ+Cjx0ZXh0IHg9IjIyMCIgeT0iMTgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMzMzMiPlBsYXRmb3JtIERpc3RyaWJ1dGlvbiAtIFdlYiAyLjAsIERpcmVjdG9yaWVzLCBTb2NpYWw8L3RleHQ+Cjx0ZXh0IHg9IjIyMCIgeT0iMjYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMzMzMiPkFjdGl2ZSBDYW1wYWlnbnMgLSBObyBhY3RpdmUgY2FtcGFpZ25zPC90ZXh0Pgo8dGV4dCB4PSIyMjAiIHk9IjM0MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMzMzIj5LZXl3b3JkIFJhbmtpbmcgUHJvZ3Jlc3MgLSBDdXJyZW50IHZzIFRhcmdldCBQb3NpdGlvbnM8L3RleHQ+Cjx0ZXh0IHg9IjIyMCIgeT0iNDIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMzMzMiPk5FVyBDQU1QQUlHTiBidXR0b24gYW5kIHZhcmlvdXMgY2hhcnRzIGFuZCBncmFwaHM8L3RleHQ+Cjwvc3ZnPgo="
   },
   {
     title: "אות-אות - אפליקציה מבוססת בינה מלאכותית",
@@ -40,14 +40,6 @@ const projects = [
     link: "#",
     icon: "⚙️",
     thumbnail: "/images/nir-friedman-screenshot.jpg"
-  },
-  {
-    title: "אתר קורפורטיבי",
-    description: "עיצוב ופיתוח אתר קורפורטיבי עם אסטרטגיה דיגיטלית מקיפה.",
-    tags: ["Corporate", "Strategy", "Branding"],
-    link: "#",
-    icon: "🏛️",
-    thumbnail: null
   }
 ];
 
