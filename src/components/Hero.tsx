@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
-    }, 2500);
+    }, 1250);
     return () => clearInterval(interval);
   }, []);
 
@@ -137,7 +137,9 @@ const Hero: React.FC = () => {
               textAlign: 'center',
               wordWrap: 'break-word',
               overflowWrap: 'break-word',
-              letterSpacing: '-0.02em'
+              letterSpacing: '-0.02em',
+              animation: 'digitalGlitch 0.3s ease-out',
+              position: 'relative'
             }}>
               {rotatingWords[currentWord]}
             </span>
@@ -288,6 +290,39 @@ const Hero: React.FC = () => {
         @keyframes slideIn {
           0% { opacity: 0; transform: translateY(20px); }
           100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes digitalGlitch {
+          0% { 
+            opacity: 0; 
+            transform: translateY(20px) skewX(0deg); 
+            filter: hue-rotate(0deg) contrast(1);
+          }
+          15% { 
+            opacity: 0.8; 
+            transform: translateY(10px) skewX(2deg); 
+            filter: hue-rotate(90deg) contrast(1.2);
+          }
+          30% { 
+            opacity: 0.6; 
+            transform: translateY(5px) skewX(-1deg); 
+            filter: hue-rotate(180deg) contrast(0.8);
+          }
+          45% { 
+            opacity: 0.9; 
+            transform: translateY(2px) skewX(1deg); 
+            filter: hue-rotate(270deg) contrast(1.1);
+          }
+          60% { 
+            opacity: 0.7; 
+            transform: translateY(1px) skewX(-0.5deg); 
+            filter: hue-rotate(360deg) contrast(0.9);
+          }
+          100% { 
+            opacity: 1; 
+            transform: translateY(0) skewX(0deg); 
+            filter: hue-rotate(0deg) contrast(1);
+          }
         }
         
         @keyframes fadeInUp {
