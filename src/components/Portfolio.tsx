@@ -2,12 +2,44 @@ import React, { useEffect, useState } from "react";
 
 const projects = [
   {
+    title: "הפרויקט שאני הכי גאה בו – יניב גיל",
+    description: "אתר תדמית מדויק ומהיר עבור יניב גיל – דגש על חוויית משתמש ותוצאות.",
+    tags: ["Next.js", "Performance", "SEO"],
+    link: "https://yanivgil.co.il",
+    icon: "🏆",
+    thumbnail: ""
+  },
+  {
     title: "חברת יבוא בינלאומית - אמטיסט",
     description: "עיצוב ופיתוח אתר תדמית לחברת הייטק בינלאומית עם חוויית משתמש מרשימה.",
     tags: ["UX/UI", "React", "SEO"],
     link: "https://amatist.vercel.app/",
     icon: "🏢",
     thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    title: "Dog Breeders – פלטפורמת גידול כלבים",
+    description: "אתר בינלאומי עם דגש על חיפוש, מיון וקידום אורגני מתקדם.",
+    tags: ["Next.js", "International", "SEO"],
+    link: "https://dog-breeders.com",
+    icon: "🐶",
+    thumbnail: ""
+  },
+  {
+    title: "Idan Locations – לוקיישנים להפקות",
+    description: "אתר קטלוג מהיר להגשת לוקיישנים, כולל מערכת חיפוש וסינון.",
+    tags: ["Catalog", "Search", "UI/UX"],
+    link: "https://idan-locations-f0da3204.base44.app/",
+    icon: "📸",
+    thumbnail: ""
+  },
+  {
+    title: "זהבית רפאל – עיצוב פנים",
+    description: "אתר תדמית אלגנטי עם דגש על ויז'ואל ומיתוג.",
+    tags: ["Branding", "UI/UX", "Showcase"],
+    link: "https://zehavitrephael.com/",
+    icon: "🏠",
+    thumbnail: ""
   },
   {
     title: "עסקים קטנים - קירו יפו",
@@ -23,13 +55,13 @@ const projects = [
       tags: ["Google Ads", "Analytics", "Campaigns"],
       link: "#",
       icon: "📈",
-      thumbnail: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgaGVpZ2h0PSI2MDAiIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwMDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjMjU2M0VGIi8+Cjx0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmaWxsPSJ3aGl0ZSI+U0VPIEF1dG9tYXRpb248L3RleHQ+Cjx0ZXh0IHg9IjIyMCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiPkRhc2hib2FyZDwvdGV4dD4KPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI4MCIgZmlsbD0id2hpdGUiIHJ4PSI4Ii8+Cjx0ZXh0IHg9IjIzMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMzMzMiPlRvdGFsIEJhY2tsaW5rczogMDwvdGV4dD4KPHJlY3QgeD0iNDIwIiB5PSI4MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI4MCIgZmlsbD0id2hpdGUiIHJ4PSI4Ii8+Cjx0ZXh0IHg9IjQzMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMzMzMiPkluZGV4ZWQgTGlua3M6IDA8L3RleHQ+CjxyZWN0IHg9IjYyMCIgeT0iODAiIHdpZHRoPSIxODAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIiByeD0iOCIvPgo8dGV4dCB4PSI2MzAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjMzMzIj5BdmcuIERvbWFpbiBBdXRob3JpdHk6IDA8L3RleHQ+CjxyZWN0IHg9IjgyMCIgeT0iODAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNDAiIGZpbGw9IiMyNTYzRUYiIHJ4PSIyMCIvPgo8dGV4dCB4PSI4MzAiIHk9IjEwNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSI+TkVXIENBTVBBSUdOPC90ZXh0Pgo8cmVjdCB4PSIyMjAiIHk9IjE4MCIgd2lkdGg9IjM1MCIgaGVpZ2h0PSIxNTAiIGZpbGw9IndoaXRlIiByeD0iOCIvPgo8dGV4dCB4PSIyMzAiIHk9IjIwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzMzMyI+QmFja2xpbmtzIFByb2dyZXNzIChMYXN0IDcgRGF5cyk8L3RleHQ+CjxwYXRoIGQ9Ik0gMjQwIDI4MCBMIDI4MCAyNjAgTCAzMjAgMjQwIEwgMzYwIDIyMCBMIDQwMCAyMDAgTCA0NDAgMjEwIEwgNDgwIDIzMCIgc3Ryb2tlPSIjMDBGRkZGIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KPHJlY3QgeD0iNjAwIiB5PSIxODAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSJ3aGl0ZSIgcng9IjgiLz4KPHRleHQgeD0iNjEwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMzMzMiPlBsYXRmb3JtIERpc3RyaWJ1dGlvbjwvdGV4dD4KPHRleHQgeD0iNjEwIiB5PSIyMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzMzMyI+V2ViIDIuMCwgRGlyZWN0b3JpZXMsIFNvY2lhbDwvdGV4dD4KPHJlY3QgeD0iMjIwIiB5PSIzNTAiIHdpZHRoPSIzNTAiIGhlaWdodD0iMTAwIiBmaWxsPSJ3aGl0ZSIgcng9IjgiLz4KPHRleHQgeD0iMjMwIiB5PSIzNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMzMzMiPkFjdGl2ZSBDYW1wYWlnbnM8L3RleHQ+Cjx0ZXh0IHg9IjIzMCIgeT0iMzkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjYiPk5vIGFjdGl2ZSBjYW1wYWlnbnM8L3RleHQ+CjxyZWN0IHg9IjYwMCIgeT0iMzUwIiB3aWR0aD0iMzUwIiBoZWlnaHQ9IjEwMCIgZmlsbD0id2hpdGUiIHJ4PSI4Ii8+Cjx0ZXh0IHg9IjYxMCIgeT0iMzcwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMzMzIj5LZXl3b3JkIFJhbmtpbmcgUHJvZ3Jlc3M8L3RleHQ+Cjx0ZXh0IHg9IjYxMCIgeT0iMzkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMzMzMiPkN1cnJlbnQgdnMgVGFyZ2V0IFBvc2l0aW9uczwvdGV4dD4KPC9zdmc+Cg=="
+      thumbnail: "/SEO.png"
     },
   {
     title: "אות-אות - אפליקציה מבוססת בינה מלאכותית",
     description: "פיתוח אפליקציה מובייל עם ביצועים אופטימליים וחוויית משתמש ייחודית.",
     tags: ["React Native", "Mobile", "UI/UX"],
-    link: "#",
+    link: "https://otot.app",
     icon: "📱",
     thumbnail: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
   },
@@ -37,7 +69,7 @@ const projects = [
     title: "עמוד אומן - ניר פרידמן",
     description: "בניית מערכת ניהול תוכן מתקדמת עם ממשק ניהול אינטואיטיבי.",
     tags: ["CMS", "Backend", "Database"],
-    link: "#",
+    link: "https://nir-friedman.vercel.app/",
     icon: "⚙️",
     thumbnail: "/images/nir-friedman-screenshot.jpg"
   }
