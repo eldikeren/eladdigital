@@ -58,24 +58,30 @@ const About: React.FC = () => {
       }} />
 
       {/* וידאו רקע */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: 0,
-          opacity: 0.7
-        }}
-      >
-        <source src="/space_compressed.mp4" type="video/mp4" />
-      </video>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          webkit-playsinline="true"
+          x5-playsinline="true"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="false"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            opacity: 0.7,
+            pointerEvents: 'none'
+          }}
+        >
+          <source src="/space_compressed.mp4" type="video/mp4" />
+        </video>
 
       <div style={{
         position: 'relative',
@@ -301,6 +307,20 @@ const About: React.FC = () => {
         @keyframes gradientShift {
           0%, 100% { opacity: 0.3; }
           50% { opacity: 0.6; }
+        }
+        
+        video {
+          -webkit-playsinline: true;
+          -moz-playsinline: true;
+          -ms-playsinline: true;
+          playsinline: true;
+          -webkit-media-controls: none;
+          -moz-media-controls: none;
+          -ms-media-controls: none;
+          media-controls: none;
+          -webkit-media-controls-overlay-play-button: none;
+          -webkit-media-controls-play-button: none;
+          -webkit-media-controls-start-playback-button: none;
         }
         
         @keyframes spaceAnimation {

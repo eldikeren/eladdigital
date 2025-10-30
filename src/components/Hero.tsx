@@ -53,6 +53,11 @@ const Hero: React.FC = () => {
         loop
         muted
         playsInline
+        preload="auto"
+        webkit-playsinline="true"
+        x5-playsinline="true"
+        x5-video-player-type="h5"
+        x5-video-player-fullscreen="false"
         style={{
           position: 'absolute',
           top: 0,
@@ -61,7 +66,8 @@ const Hero: React.FC = () => {
           height: '100%',
           objectFit: 'cover',
           zIndex: 0,
-          opacity: 0.3
+          opacity: 0.3,
+          pointerEvents: 'none'
         }}
       >
         <source src="/start.mp4" type="video/mp4" />
@@ -328,6 +334,20 @@ const Hero: React.FC = () => {
         @keyframes fadeInUp {
           0% { opacity: 0; transform: translateY(30px); }
           100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        video {
+          -webkit-playsinline: true;
+          -moz-playsinline: true;
+          -ms-playsinline: true;
+          playsinline: true;
+          -webkit-media-controls: none;
+          -moz-media-controls: none;
+          -ms-media-controls: none;
+          media-controls: none;
+          -webkit-media-controls-overlay-play-button: none;
+          -webkit-media-controls-play-button: none;
+          -webkit-media-controls-start-playback-button: none;
         }
 
         @media (max-width: 768px) {
