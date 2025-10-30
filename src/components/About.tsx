@@ -57,25 +57,36 @@ const About: React.FC = () => {
         animation: 'gradientShift 15s ease-in-out infinite'
       }} />
 
-      {/* וידאו רקע */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: 0,
-          opacity: 0.3
-        }}
-      >
-        <source src="/space.mp4" type="video/mp4" />
-      </video>
+      {/* אנימציית רקע חלל */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+        background: 'linear-gradient(45deg, #0f0f23, #1a1a2e, #16213e, #0f0f23)',
+        backgroundSize: '400% 400%',
+        animation: 'spaceAnimation 20s ease-in-out infinite'
+      }}>
+        {/* כוכבים */}
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              width: Math.random() * 3 + 1 + 'px',
+              height: Math.random() * 3 + 1 + 'px',
+              background: '#ffffff',
+              borderRadius: '50%',
+              top: Math.random() * 100 + '%',
+              left: Math.random() * 100 + '%',
+              animation: `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`,
+              animationDelay: Math.random() * 2 + 's'
+            }}
+          />
+        ))}
+      </div>
 
       <div style={{
         position: 'relative',
@@ -295,6 +306,16 @@ const About: React.FC = () => {
         @keyframes gradientShift {
           0%, 100% { opacity: 0.3; }
           50% { opacity: 0.6; }
+        }
+        
+        @keyframes spaceAnimation {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.2); }
         }
       `}</style>
     </section>
