@@ -6,12 +6,12 @@ const Navigation: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const menuItems = [
-    { href: "#contact", text: "צור קשר" },
-    { href: "#testimonials", text: "המלצות" },
-    { href: "#portfolio", text: "עבודות" },
-    { href: "#services", text: "שירותים" },
+    { href: "#home", text: "בית" },
     { href: "#about", text: "אודות" },
-    { href: "#home", text: "בית" }
+    { href: "#services", text: "שירותים" },
+    { href: "#portfolio", text: "עבודות" },
+    { href: "#testimonials", text: "המלצות" },
+    { href: "#contact", text: "צור קשר" }
   ];
 
   useEffect(() => {

@@ -77,7 +77,7 @@ const About: React.FC = () => {
           direction: 'rtl',
           unicodeBidi: 'bidi-override'
         }}>
-          למה לבחור בנו؟
+          למה לבחור בנו?
         </h2>
 
         <div style={{

@@ -249,7 +249,9 @@ const CTA: React.FC = () => {
                 color: '#a855f7',
                 textDecoration: 'none',
                 fontWeight: 600,
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                direction: 'ltr',
+                unicodeBidi: 'bidi-override'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = '#ffffff';
