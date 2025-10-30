@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 
 const projects = [
   {
-    title: "הפרויקט שאני הכי גאה בו – יניב גיל",
-    description: "אתר תדמית מדויק ומהיר עבור יניב גיל – דגש על חוויית משתמש ותוצאות.",
+    title: "משרד עו״ד יניב גיל ושות'",
+    description: "אתר מדויק עבור עו"ד יניב גיל – דגש על חוויית משתמש ותוצאות.",
     tags: ["Next.js", "Performance", "SEO"],
     link: "https://yanivgil.co.il",
     icon: "🏆",
-    thumbnail: ""
+    thumbnail: "/yaniv.png"
   },
   {
     title: "חברת יבוא בינלאומית - אמטיסט",
@@ -23,7 +23,7 @@ const projects = [
     tags: ["Next.js", "International", "SEO"],
     link: "https://dog-breeders.com",
     icon: "🐶",
-    thumbnail: ""
+    thumbnail: "/dogs.png"
   },
   {
     title: "Idan Locations – לוקיישנים להפקות",
@@ -34,12 +34,12 @@ const projects = [
     thumbnail: ""
   },
   {
-    title: "זהבית רפאל – עיצוב פנים",
+    title: "זהבית רפאל – צלמת",
     description: "אתר תדמית אלגנטי עם דגש על ויז'ואל ומיתוג.",
     tags: ["Branding", "UI/UX", "Showcase"],
     link: "https://zehavitrephael.com/",
     icon: "🏠",
-    thumbnail: ""
+    thumbnail: "/zehavit.png"
   },
   {
     title: "עסקים קטנים - קירו יפו",
