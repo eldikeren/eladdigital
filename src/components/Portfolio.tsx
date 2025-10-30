@@ -7,7 +7,7 @@ const projects = [
     tags: ["Next.js", "Performance", "SEO"],
     link: "https://yanivgil.co.il",
     icon: "🏆",
-    thumbnail: "/yaniv.png"
+    thumbnail: "/images/yaniv.png"
   },
   {
     title: "חברת יבוא בינלאומית - אמטיסט",
@@ -23,7 +23,7 @@ const projects = [
     tags: ["Next.js", "International", "SEO"],
     link: "https://dog-breeders.com",
     icon: "🐶",
-    thumbnail: "/dogs.png"
+    thumbnail: "/images/dogs.png"
   },
   {
     title: "Idan Locations – לוקיישנים להפקות",
@@ -31,7 +31,7 @@ const projects = [
     tags: ["Catalog", "Search", "UI/UX"],
     link: "https://idan-locations-f0da3204.base44.app/",
     icon: "📸",
-    thumbnail: "/idan.png"
+    thumbnail: "/images/idan.png"
   },
   {
     title: "זהבית רפאל – צלמת",
@@ -39,7 +39,7 @@ const projects = [
     tags: ["Branding", "UI/UX", "Showcase"],
     link: "https://zehavitrephael.com/",
     icon: "🏠",
-    thumbnail: "/zehavit.png"
+    thumbnail: "/images/zehavit.png"
   },
   {
     title: "עסקים קטנים - קירו יפו",
