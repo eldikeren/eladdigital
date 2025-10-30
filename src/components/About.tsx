@@ -133,9 +133,9 @@ const About: React.FC = () => {
               marginTop: '2rem'
             }}>
               {[
-                { icon: '🎯', title: 'ניסיון של מעל 25 שנה', description: 'מומחיות מוכחת בתחום הדיגיטל' },
-                { icon: '🚀', title: 'חדשנות ויזמות מתמדת', description: 'טכנולוגיות מתקדמות ופתרונות יצירתיים' },
-                { icon: '💡', title: 'רקע אמנותי בכתיבה ומוזיקה', description: 'יצירתיות ייחודית בכל פרויקט' }
+                { icon: '25+', title: 'שנות ניסיון', description: 'מומחיות מוכחת בפיתוח דיגיטלי' },
+                { icon: '∞', title: 'חדשנות מתמדת', description: 'טכנולוגיות מתקדמות ופתרונות יצירתיים' },
+                { icon: '★', title: 'יצירתיות מקצועית', description: 'גישה ייחודית לכל פרויקט' }
               ].map((highlight, index) => (
                 <div
                   key={highlight.title}
@@ -163,9 +163,11 @@ const About: React.FC = () => {
                   }}
                 >
                   <div style={{
-                    fontSize: isMobile ? '2.5rem' : '3rem',
+                    fontSize: isMobile ? '1.5rem' : '2rem',
                     marginBottom: '1rem',
-                    animation: 'pulse 2s ease-in-out infinite'
+                    fontWeight: 'bold',
+                    color: '#a855f7',
+                    textAlign: 'center'
                   }}>
                     {highlight.icon}
                   </div>
@@ -211,14 +213,34 @@ const About: React.FC = () => {
               alignItems: 'center',
               zIndex: 15
             }}>
-              {/* אייקון מרכזי */}
+              {/* אלמנט מרכזי מקצועי */}
               <div style={{
-                fontSize: isMobile ? '4rem' : '6rem',
+                width: isMobile ? '80px' : '120px',
+                height: isMobile ? '80px' : '120px',
+                background: 'linear-gradient(135deg, #a855f7, #8b5cf6)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 animation: 'pulse 3s ease-in-out infinite',
                 zIndex: 5,
-                position: 'relative'
+                position: 'relative',
+                boxShadow: '0 0 40px rgba(168, 85, 247, 0.3)'
               }}>
-                🚀
+                <div style={{
+                  width: '60%',
+                  height: '60%',
+                  background: 'white',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: isMobile ? '1.5rem' : '2rem',
+                  fontWeight: 'bold',
+                  color: '#a855f7'
+                }}>
+                  EK
+                </div>
               </div>
 
               {/* חלקיקים מסתובבים */}
@@ -242,22 +264,23 @@ const About: React.FC = () => {
                 />
               ))}
 
-              {/* כוכבים מנצנצים */}
-              {[...Array(8)].map((_, i) => (
+              {/* נקודות אור מקצועיות */}
+              {[...Array(6)].map((_, i) => (
                 <div
-                  key={`star-${i}`}
+                  key={`dot-${i}`}
                   style={{
                     position: 'absolute',
-                    fontSize: '12px',
-                    color: '#fbbf24',
-                    animation: `starGlow ${2 + i * 0.3}s ease-in-out infinite`,
-                    animationDelay: `${i * 0.2}s`,
+                    width: '4px',
+                    height: '4px',
+                    background: '#a855f7',
+                    borderRadius: '50%',
+                    animation: `dotGlow ${3 + i * 0.5}s ease-in-out infinite`,
+                    animationDelay: `${i * 0.3}s`,
                     top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`
+                    left: `${Math.random() * 100}%`,
+                    boxShadow: '0 0 10px rgba(168, 85, 247, 0.6)'
                   }}
-                >
-                  ⭐
-                </div>
+                />
               ))}
             </div>
           </div>
@@ -290,9 +313,9 @@ const About: React.FC = () => {
           100% { transform: rotate(360deg) translateX(${isMobile ? '100px' : '150px'}) rotate(-360deg); }
         }
         
-        @keyframes starGlow {
+        @keyframes dotGlow {
           0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
+          50% { opacity: 1; transform: scale(1.5); }
         }
         
         @keyframes gradientShift {

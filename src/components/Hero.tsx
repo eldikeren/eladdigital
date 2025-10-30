@@ -47,6 +47,26 @@ const Hero: React.FC = () => {
       padding: isMobile ? '1rem' : '2rem'
     }}>
       
+      {/* וידאו רקע */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          opacity: 0.3
+        }}
+      >
+        <source src="/start.mp4" type="video/mp4" />
+      </video>
+
       {/* רקע מונפש */}
       <div style={{
         position: 'absolute',
@@ -54,9 +74,8 @@ const Hero: React.FC = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)',
-        zIndex: 1,
-        animation: 'gradientShift 10s ease-in-out infinite'
+        background: 'linear-gradient(135deg, rgba(15, 15, 35, 0.8) 0%, rgba(26, 26, 46, 0.6) 50%, rgba(22, 33, 62, 0.8) 100%)',
+        zIndex: 1
       }} />
 
       {/* Glow אינטראקטיבי - רק בדסקטופ */}
@@ -89,20 +108,19 @@ const Hero: React.FC = () => {
       }}>
         
         <h1 style={{
-          fontFamily: 'Orbitron, monospace',
-          fontSize: isMobile ? '1.3rem' : '3.5rem',
-          fontWeight: 900,
+          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+          fontSize: isMobile ? '2rem' : '4rem',
+          fontWeight: 700,
           color: '#ffffff',
-          marginBottom: '1rem',
-          textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
-          animation: 'textGlow 3s ease-in-out infinite',
-          lineHeight: isMobile ? '1.5' : '1.1',
+          marginBottom: '1.5rem',
+          lineHeight: isMobile ? '1.2' : '1.1',
           wordWrap: 'break-word',
-          overflowWrap: 'break-word'
+          overflowWrap: 'break-word',
+          letterSpacing: '-0.02em'
         }}>
-          צוות עילית מקצועי
+          פתרונות דיגיטליים מתקדמים
           <div style={{
-            height: isMobile ? '1.8rem' : '4.5rem',
+            height: isMobile ? '2rem' : '5rem',
             position: 'relative',
             overflow: 'hidden',
             marginTop: '0.5rem',
@@ -112,15 +130,14 @@ const Hero: React.FC = () => {
           }}>
             <span style={{
               color: '#a855f7',
-              fontSize: isMobile ? '1.3rem' : '3.5rem',
-              fontWeight: 900,
-              textShadow: '0 0 30px rgba(168, 85, 247, 0.8)',
-              animation: 'slideIn 0.6s ease-out',
+              fontSize: isMobile ? '2rem' : '4rem',
+              fontWeight: 700,
               display: 'block',
               width: '100%',
               textAlign: 'center',
               wordWrap: 'break-word',
-              overflowWrap: 'break-word'
+              overflowWrap: 'break-word',
+              letterSpacing: '-0.02em'
             }}>
               {rotatingWords[currentWord]}
             </span>
@@ -128,34 +145,20 @@ const Hero: React.FC = () => {
         </h1>
 
         <p style={{
-          fontFamily: 'Rajdhani, sans-serif',
-          fontSize: isMobile ? '0.8rem' : '1.6rem',
+          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+          fontSize: isMobile ? '1rem' : '1.25rem',
           color: '#e2e8f0',
-          marginBottom: '1.5rem',
-          fontWeight: 600,
+          marginBottom: '2rem',
+          fontWeight: 400,
           animation: 'fadeInUp 1s ease-out 0.3s both',
           wordWrap: 'break-word',
-          overflowWrap: 'break-word'
-        }}>
-          פתרונות דיגיטליים מתקדמים
-        </p>
-
-        <p style={{
-          fontFamily: 'Rajdhani, sans-serif',
-          fontSize: isMobile ? '0.65rem' : '1.1rem',
-          color: '#cbd5e1',
-          marginBottom: '3rem',
-          lineHeight: 1.7,
-          maxWidth: '800px',
+          overflowWrap: 'break-word',
+          lineHeight: 1.6,
+          maxWidth: '600px',
           marginLeft: 'auto',
-          marginRight: 'auto',
-          animation: 'fadeInUp 1s ease-out 0.6s both',
-          padding: isMobile ? '0 0.5rem' : '0',
-          wordWrap: 'break-word',
-          overflowWrap: 'break-word'
+          marginRight: 'auto'
         }}>
-          עם רקע אמנותי בכתיבה ומוזיקה, ניסיון של מעל 25 שנה בחדשנות ויזמות,
-          וניהול קמפיינים דיגיטליים בהיקפים של מיליונים – אנחנו הופכים רעיונות לדיגיטל שמייצר הצלחה.
+          עם ניסיון של מעל 25 שנה בחדשנות ויזמות, אנחנו מפתחים פתרונות דיגיטליים מתקדמים שמניבים תוצאות מוכחות.
         </p>
 
         {/* כפתורי פעולה */}
