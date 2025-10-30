@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const projects = [
   {
     title: "משרד עו״ד יניב גיל ושות'",
-    description: "אתר מדויק עבור עו"ד יניב גיל – דגש על חוויית משתמש ותוצאות.",
+    description: "אתר מדויק עבור עו\"ד יניב גיל - דגש על חוויית משתמש ותוצאות.",
     tags: ["Next.js", "Performance", "SEO"],
     link: "https://yanivgil.co.il",
     icon: "🏆",
