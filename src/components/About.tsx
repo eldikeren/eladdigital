@@ -213,34 +213,15 @@ const About: React.FC = () => {
               alignItems: 'center',
               zIndex: 15
             }}>
-              {/* אלמנט מרכזי מקצועי */}
+              {/* רקטה מרכזית */}
               <div style={{
-                width: isMobile ? '80px' : '120px',
-                height: isMobile ? '80px' : '120px',
-                background: 'linear-gradient(135deg, #a855f7, #8b5cf6)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                fontSize: isMobile ? '4rem' : '6rem',
                 animation: 'pulse 3s ease-in-out infinite',
                 zIndex: 5,
                 position: 'relative',
-                boxShadow: '0 0 40px rgba(168, 85, 247, 0.3)'
+                filter: 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.5))'
               }}>
-                <div style={{
-                  width: '60%',
-                  height: '60%',
-                  background: 'white',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: isMobile ? '1.5rem' : '2rem',
-                  fontWeight: 'bold',
-                  color: '#a855f7'
-                }}>
-                  EK
-                </div>
+                🚀
               </div>
 
               {/* חלקיקים מסתובבים */}
