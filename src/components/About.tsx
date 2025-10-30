@@ -245,23 +245,22 @@ const About: React.FC = () => {
                 />
               ))}
 
-              {/* נקודות אור מקצועיות */}
-              {[...Array(6)].map((_, i) => (
+              {/* כוכבים צהובים חמודים */}
+              {[...Array(8)].map((_, i) => (
                 <div
-                  key={`dot-${i}`}
+                  key={`star-${i}`}
                   style={{
                     position: 'absolute',
-                    width: '4px',
-                    height: '4px',
-                    background: '#a855f7',
-                    borderRadius: '50%',
-                    animation: `dotGlow ${3 + i * 0.5}s ease-in-out infinite`,
-                    animationDelay: `${i * 0.3}s`,
+                    fontSize: '12px',
+                    color: '#fbbf24',
+                    animation: `starGlow ${2 + i * 0.3}s ease-in-out infinite`,
+                    animationDelay: `${i * 0.2}s`,
                     top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
-                    boxShadow: '0 0 10px rgba(168, 85, 247, 0.6)'
+                    left: `${Math.random() * 100}%`
                   }}
-                />
+                >
+                  ⭐
+                </div>
               ))}
             </div>
           </div>
@@ -294,9 +293,9 @@ const About: React.FC = () => {
           100% { transform: rotate(360deg) translateX(${isMobile ? '100px' : '150px'}) rotate(-360deg); }
         }
         
-        @keyframes dotGlow {
+        @keyframes starGlow {
           0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.5); }
+          50% { opacity: 1; transform: scale(1.2); }
         }
         
         @keyframes gradientShift {
