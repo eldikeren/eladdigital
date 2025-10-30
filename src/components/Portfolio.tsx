@@ -21,7 +21,7 @@ const projects = [
     title: "Dog Breeders – פלטפורמת גידול כלבים",
     description: "אתר בינלאומי עם דגש על חיפוש, מיון וקידום אורגני מתקדם.",
     tags: ["Next.js", "International", "SEO"],
-    link: "https://dog-breeders.com",
+    link: "https://dogs-breeders.com",
     icon: "🐶",
     thumbnail: "/images/dogs.png"
   },
