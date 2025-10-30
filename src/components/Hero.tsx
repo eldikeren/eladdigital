@@ -75,115 +75,6 @@ const Hero: React.FC = () => {
         }} />
       )}
 
-      {/* כרטיסי Glassmorphism מונפשים - רק בדסקטופ */}
-      {!isMobile && (
-        <>
-          <div style={{
-            position: 'absolute',
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '16px',
-            padding: '1rem',
-            width: '200px',
-            textAlign: 'center',
-            backdropFilter: 'blur(10px)',
-            top: '20%',
-            left: '10%',
-            zIndex: 5,
-            animation: 'float 6s ease-in-out infinite'
-          }}>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginBottom: '0.5rem'
-            }}>
-              <div style={{
-                width: '2rem',
-                height: '2rem',
-                background: '#a855f7',
-                borderRadius: '50%',
-                animation: 'pulse 2s ease-in-out infinite'
-              }} />
-            </div>
-            <h4 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: 'white', marginBottom: '0.25rem' }}>
-              UX / UI
-            </h4>
-            <p style={{ fontSize: '0.875rem', color: '#9ca3af' }}>
-              עיצוב חוויית משתמש מודרנית
-            </p>
-          </div>
-
-          <div style={{
-            position: 'absolute',
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '16px',
-            padding: '1rem',
-            width: '200px',
-            textAlign: 'center',
-            backdropFilter: 'blur(10px)',
-            top: '45%',
-            right: '10%',
-            zIndex: 5,
-            animation: 'float 6s ease-in-out infinite 2s'
-          }}>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginBottom: '0.5rem'
-            }}>
-              <div style={{
-                width: '2rem',
-                height: '2rem',
-                background: '#a855f7',
-                borderRadius: '50%',
-                animation: 'pulse 2s ease-in-out infinite 1s'
-              }} />
-            </div>
-            <h4 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: 'white', marginBottom: '0.25rem' }}>
-              SEO
-            </h4>
-            <p style={{ fontSize: '0.875rem', color: '#9ca3af' }}>
-              אופטימיזציה לקידום אתרים
-            </p>
-          </div>
-
-          <div style={{
-            position: 'absolute',
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '16px',
-            padding: '1rem',
-            width: '200px',
-            textAlign: 'center',
-            backdropFilter: 'blur(10px)',
-            top: '70%',
-            left: '10%',
-            zIndex: 5,
-            animation: 'float 6s ease-in-out infinite 4s'
-          }}>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginBottom: '0.5rem'
-            }}>
-              <div style={{
-                width: '2rem',
-                height: '2rem',
-                background: '#a855f7',
-                borderRadius: '50%',
-                animation: 'pulse 2s ease-in-out infinite 2s'
-              }} />
-            </div>
-            <h4 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: 'white', marginBottom: '0.25rem' }}>
-              Campaigns
-            </h4>
-            <p style={{ fontSize: '0.875rem', color: '#9ca3af' }}>
-              ניהול קמפיינים מתקדמים
-            </p>
-          </div>
-        </>
-      )}
 
       {/* תוכן הירו */}
       <div style={{
@@ -193,7 +84,7 @@ const Hero: React.FC = () => {
         maxWidth: '1200px',
         width: '100%',
         animation: 'fadeInUp 1s ease-out',
-        paddingBottom: isMobile ? '12rem' : '8rem', // מרווח גדול לכרטיסי שירותים
+        paddingBottom: isMobile ? '4rem' : '2rem',
         paddingTop: isMobile ? '6rem' : '0' // מרווח לניווט במובייל
       }}>
         
@@ -279,7 +170,7 @@ const Hero: React.FC = () => {
           maxWidth: isMobile ? '100%' : '500px',
           margin: '0 auto',
           padding: isMobile ? '0 0.5rem' : '0',
-          marginBottom: isMobile ? '4rem' : '0' // מרווח נוסף במובייל
+          marginBottom: isMobile ? '2rem' : '0'
         }}>
           <a
             href="#contact"
@@ -369,79 +260,6 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* כרטיסי שירותים בתחתית */}
-      <div style={{
-        position: 'absolute',
-        bottom: isMobile ? '1rem' : '2rem',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        display: 'flex',
-        gap: isMobile ? '0.5rem' : '2rem',
-        zIndex: 5,
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        maxWidth: '90vw',
-        padding: isMobile ? '0 0.5rem' : '0'
-      }}>
-        {[
-          { title: "UX / UI", description: "עיצוב חוויית משתמש מודרנית" },
-          { title: "SEO", description: "אופטימיזציה לקידום אתרים" },
-          { title: "Campaigns", description: "ניהול קמפיינים מתקדמים" }
-        ].map((service, index) => (
-          <div
-            key={service.title}
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              borderRadius: '12px',
-              padding: isMobile ? '0.4rem 0.5rem' : '1rem 1.5rem',
-              textAlign: 'center',
-              backdropFilter: 'blur(10px)',
-              transition: 'all 0.3s ease',
-              animation: `fadeInUp 0.8s ease-out ${1.2 + index * 0.1}s both`,
-              minWidth: isMobile ? '70px' : '150px',
-              flex: '1 1 auto'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px) scale(1.05)';
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-              e.currentTarget.style.boxShadow = '0 10px 25px rgba(168, 85, 247, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) scale(1)';
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            <div style={{
-              width: isMobile ? '0.8rem' : '2rem',
-              height: isMobile ? '0.8rem' : '2rem',
-              background: '#a855f7',
-              borderRadius: '50%',
-              margin: '0 auto 0.5rem',
-              animation: `pulse 2s ease-in-out infinite ${index * 0.3}s`
-            }} />
-            <h4 style={{ 
-              fontSize: isMobile ? '0.5rem' : '1rem', 
-              fontWeight: 'bold', 
-              color: '#ffffff', 
-              marginBottom: '0.25rem',
-              wordWrap: 'break-word',
-              overflowWrap: 'break-word'
-            }}>
-              {service.title}
-            </h4>
-            <p style={{ 
-              fontSize: isMobile ? '0.4rem' : '0.8rem', 
-              color: '#cbd5e1',
-              wordWrap: 'break-word',
-              overflowWrap: 'break-word'
-            }}>
-              {service.description}
-            </p>
-          </div>
-        ))}
-      </div>
 
       <style>{`
         @keyframes float {
