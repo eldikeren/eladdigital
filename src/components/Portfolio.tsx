@@ -196,6 +196,8 @@ const Portfolio: React.FC = () => {
                   <img
                     src={project.thumbnail}
                     alt={project.title}
+                    loading="lazy"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/logo512.png'; }}
                     style={{
                       width: '100%',
                       height: '100%',
