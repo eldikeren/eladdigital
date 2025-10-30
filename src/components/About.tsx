@@ -74,7 +74,7 @@ const About: React.FC = () => {
           opacity: 0.7
         }}
       >
-        <source src="/space.mp4" type="video/mp4" />
+        <source src="/space_compressed.mp4" type="video/mp4" />
       </video>
 
       <div style={{
