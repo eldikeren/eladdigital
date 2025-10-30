@@ -57,6 +57,26 @@ const About: React.FC = () => {
         animation: 'gradientShift 15s ease-in-out infinite'
       }} />
 
+      {/* וידאו רקע */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          opacity: 0.3
+        }}
+      >
+        <source src="/space.mp4" type="video/mp4" />
+      </video>
+
       <div style={{
         position: 'relative',
         zIndex: 10,
