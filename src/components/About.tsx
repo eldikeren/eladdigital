@@ -57,36 +57,25 @@ const About: React.FC = () => {
         animation: 'gradientShift 15s ease-in-out infinite'
       }} />
 
-      {/* אנימציית רקע חלל */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 0,
-        background: 'linear-gradient(45deg, #0f0f23, #1a1a2e, #16213e, #0f0f23)',
-        backgroundSize: '400% 400%',
-        animation: 'spaceAnimation 20s ease-in-out infinite'
-      }}>
-        {/* כוכבים */}
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            style={{
-              position: 'absolute',
-              width: Math.random() * 3 + 1 + 'px',
-              height: Math.random() * 3 + 1 + 'px',
-              background: '#ffffff',
-              borderRadius: '50%',
-              top: Math.random() * 100 + '%',
-              left: Math.random() * 100 + '%',
-              animation: `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`,
-              animationDelay: Math.random() * 2 + 's'
-            }}
-          />
-        ))}
-      </div>
+      {/* וידאו רקע */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          opacity: 0.7
+        }}
+      >
+        <source src="/space.mp4" type="video/mp4" />
+      </video>
 
       <div style={{
         position: 'relative',
@@ -209,7 +198,9 @@ const About: React.FC = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            animation: isVisible ? 'fadeInRight 1s ease-out 0.9s both' : 'none'
+            animation: isVisible ? 'fadeInRight 1s ease-out 0.9s both' : 'none',
+            position: 'relative',
+            zIndex: 15
           }}>
             <div style={{
               position: 'relative',
@@ -217,7 +208,8 @@ const About: React.FC = () => {
               height: isMobile ? '200px' : '300px',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              zIndex: 15
             }}>
               {/* אייקון מרכזי */}
               <div style={{
