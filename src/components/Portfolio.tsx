@@ -31,7 +31,7 @@ const projects = [
     tags: ["Catalog", "Search", "UI/UX"],
     link: "https://idan-locations-f0da3204.base44.app/",
     icon: "📸",
-    thumbnail: ""
+    thumbnail: "/idan.png"
   },
   {
     title: "זהבית רפאל – צלמת",
